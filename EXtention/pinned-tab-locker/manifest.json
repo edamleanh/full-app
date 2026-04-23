@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Pinned Tab Locker",
+  "version": "1.0",
+  "description": "Bảo mật các tab đã ghim bằng mật khẩu với giao diện Glassmorphism.",
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

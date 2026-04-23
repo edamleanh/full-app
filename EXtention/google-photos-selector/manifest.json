@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Google Photos Bulk Selector",
+  "version": "1.0",
+  "description": "Select all visible photos on Google Photos",
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://photos.google.com/*"],
+      "js": ["content.js"],
+      "css": ["style.css"]
+    }
+  ]
+}

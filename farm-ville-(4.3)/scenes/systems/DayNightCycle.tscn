@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://daynightcycle001"]
+
+[ext_resource type="Script" path="res://scenes/systems/DayNightCycle.gd" id="1_dnc"]
+
+[node name="DayNightCycle" type="CanvasLayer"]
+script = ExtResource("1_dnc")
+layer = 5
+
+[node name="DarkOverlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0)
+mouse_filter = 2
+
+[node name="SunMoon" type="Label" parent="."]
+anchors_preset = 1
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1200.0
+offset_top = 6.0
+offset_right = 1240.0
+offset_bottom = 36.0
+text = "☀️"
+add_theme_font_size_override = 22
+mouse_filter = 2

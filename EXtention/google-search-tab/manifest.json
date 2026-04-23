@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Google New Tab & Search",
+  "version": "1.0",
+  "description": "Mở tab mới với Google Search và đặt Google làm công cụ tìm kiếm trên thanh địa chỉ.",
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "chrome_settings_overrides": {
+    "search_provider": {
+      "name": "Google",
+      "keyword": "google",
+      "search_url": "https://www.google.com/search?q={searchTerms}",
+      "favicon_url": "https://www.google.com/favicon.ico",
+      "encoding": "UTF-8",
+      "is_default": true
+    }
+  }
+}

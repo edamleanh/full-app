@@ -1,0 +1,39 @@
+{
+  "name": "my-browser",
+  "version": "1.0.0",
+  "main": "main.js",
+  "description": "Trình duyệt Lite Browser siêu nhẹ",
+  "author": "Le Vo Duc Anh",
+  "license": "ISC",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win"
+  },
+  "keywords": [
+    "browser",
+    "electron"
+  ],
+  "devDependencies": {
+    "electron": "^41.2.0",
+    "electron-builder": "^26.8.1"
+  },
+  "dependencies": {
+    "@ghostery/adblocker-electron": "^2.14.1"
+  },
+  "build": {
+    "appId": "com.voducanh.acs",
+    "productName": "ACS",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "corgi.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  }
+}

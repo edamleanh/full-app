@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube PiP Shortcut",
+  "version": "1.0",
+  "description": "Bật/Tắt chế độ Picture-in-Picture cho YouTube bằng phím tắt",
+  "permissions": [
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "commands": {
+    "toggle-pip": {
+      "suggested_key": {
+        "default": "Alt+P",
+        "mac": "Command+Shift+P"
+      },
+      "description": "Bật/Tắt chế độ YouTube PiP"
+    }
+  }
+}

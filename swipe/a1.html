@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout UI Fixed</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- Cài đặt cơ bản --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #e8eaf6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* --- Khung chính (Card) --- */
+        .checkout-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 420px;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        /* --- Phần Header sản phẩm --- */
+        .product-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        /* Giả lập hình ảnh tạp chí */
+        .product-img-placeholder {
+            width: 80px;
+            height: 100px;
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            border-radius: 8px;
+            margin: 0 auto 15px;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .product-img-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            background: #fff;
+            border: 1px solid #eee;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-30%);
+            border-radius: 6px;
+            z-index: 1;
+        }
+        
+        .product-img-placeholder::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            background: white;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 6px;
+            z-index: 2;
+            /* Tạo một hình bán nguyệt giả lập logo trên bìa sách */
+            background: radial-gradient(circle at center bottom, #ff9a9e 0%, #fad0c4 100%);
+            border: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .product-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0a2540;
+            margin-bottom: 4px;
+        }
+
+        .product-price {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* --- Nút Apple Pay --- */
+        .btn-apple {
+            width: 100%;
+            background-color: #000000; /* Apple Pay thường dùng màu đen tuyền */
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .btn-apple:hover {
+            opacity: 0.9;
+        }
+
+        /* --- Dòng phân cách --- */
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 24px 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background-color: #e6e6e6;
+        }
+
+        .divider span {
+            padding: 0 10px;
+        }
+
+        /* --- Form Labels --- */
+        .form-label {
+            display: block;
+            font-size: 14px;
+            color: #4a5568;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        /* --- Input Styles --- */
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e6e6e6;
+            border-radius: 6px;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.2s;
+            color: #333;
+            border-color: #0a2540;
+            box-shadow: 0 0 0 1px #0a2540;
+        }
+
+        /* --- Card Info Group --- */
+        .card-info-group {
+            border: 1px solid #e6e6e6;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+        
+        .card-info-group:focus-within {
+            border-color: #0a2540;
+            box-shadow: 0 0 0 1px #0a2540;
+        }
+        
+        .card-number-row {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e6e6e6;
+            padding-right: 12px;
+            background: #fff;
+        }
+
+        .card-number-input {
+            border: none;
+            border-radius: 0;
+            flex-grow: 1;
+            box-shadow: none !important; /* Tắt shadow khi focus bên trong group */
+        }
+
+        /* Màu sắc cho các icon thẻ */
+        .card-icons {
+            display: flex;
+            gap: 8px;
+            font-size: 20px;
+            align-items: center;
+        }
+        
+        .fa-cc-visa {
+            color: #1A1F71; /* Màu xanh Visa */
+        }
+        
+        .fa-cc-mastercard {
+            color: #EB001B; /* Màu đỏ Mastercard */
+        }
+        
+        .fa-cc-amex {
+            color: #2E77BC; /* Màu xanh Amex */
+        }
+        
+        .fa-cc-discover {
+            color: #F9A021;
+        }
+
+        .card-expiry-cvc {
+            display: flex;
+        }
+
+        .half-input {
+            width: 50%;
+            border: none;
+            border-radius: 0;
+            box-shadow: none !important;
+        }
+        
+        .half-input:first-child {
+            border-right: 1px solid #e6e6e6;
+        }
+
+        /* --- Country Select Icon --- */
+        select.input-field {
+            appearance: none;
+            background-color: white;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%234a5568%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px top 50%;
+            background-size: 10px auto;
+            cursor: pointer;
+        }
+
+        /* --- Nút Pay --- */
+        .btn-pay {
+            width: 100%;
+            background-color: #0a2540;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .btn-pay:hover {
+            background-color: #17385e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="checkout-card">
+        <div class="product-header">
+            <div class="product-img-placeholder"></div>
+            <div class="product-title">Abstraction Magazine</div>
+            <div class="product-price">$19 per month</div>
+        </div>
+
+        <button class="btn-apple">
+            <i class="fa-brands fa-apple" style="font-size: 1.2em;"></i> Pay
+        </button>
+
+        <div class="divider">
+            <span>Or pay with card</span>
+        </div>
+
+        <form>
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="input-field" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Card Information</label>
+                <div class="card-info-group">
+                    <div class="card-number-row">
+                        <input type="text" class="input-field card-number-input" placeholder="Number">
+                        <div class="card-icons">
+                            <i class="fa-brands fa-cc-visa"></i>
+                            <i class="fa-brands fa-cc-mastercard"></i>
+                            <i class="fa-brands fa-cc-amex"></i>
+                            <i class="fa-brands fa-cc-discover"></i>
+                        </div>
+                    </div>
+                    <div class="card-expiry-cvc">
+                        <input type="text" class="input-field half-input" placeholder="MM / YY">
+                        <input type="text" class="input-field half-input" placeholder="CVC">
+                        <div style="display: flex; align-items: center; justify-content: center; width: 40px; color: #999;">
+                            <i class="fa-solid fa-credit-card"></i> </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Country or region</label>
+                <select class="input-field">
+                    <option value="US">United States</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <input type="text" class="input-field" placeholder="ZIP">
+            </div>
+
+            <button type="submit" class="btn-pay">Pay</button>
+        </form>
+    </div>
+
+</body>
+</html>

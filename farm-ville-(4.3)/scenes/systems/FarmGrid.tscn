@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://farmgrid001"]
+
+[ext_resource type="Script" path="res://scenes/systems/FarmGrid.gd" id="1_farmgrid"]
+[ext_resource type="Script" path="res://scripts/resources/CropData.gd" id="2_cropdata"]
+
+[node name="FarmGrid" type="Node2D"]
+script = ExtResource("1_farmgrid")
+
+[node name="CropContainer" type="Node2D" parent="."]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://weather001"]
+
+[ext_resource type="Script" path="res://scenes/systems/WeatherSystem.gd" id="1_weather"]
+
+[node name="WeatherSystem" type="Node2D"]
+script = ExtResource("1_weather")
+
+[node name="RainParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, -400)
+amount = 200
+lifetime = 1.2
+direction = Vector2(0.15, 1.0)
+spread = 5.0
+gravity = Vector2(20, 600)
+initial_velocity_min = 300.0
+initial_velocity_max = 420.0
+scale_amount_min = 1.5
+scale_amount_max = 3.0
+color = Color(0.5, 0.65, 1.0, 0.6)
+emission_shape = 3
+emission_rect_extents = Vector2(700, 5)
+emitting = false
+
+[node name="WindLeaves" type="CPUParticles2D" parent="."]
+position = Vector2(-700, 0)
+amount = 30
+lifetime = 4.0
+direction = Vector2(1.0, 0.3)
+spread = 20.0
+gravity = Vector2(0, 20)
+initial_velocity_min = 60.0
+initial_velocity_max = 110.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+color = Color(0.3, 0.7, 0.2, 0.8)
+emission_shape = 3
+emission_rect_extents = Vector2(5, 400)
+emitting = false
+
+[node name="WeatherIndicator" type="Label" parent="."]
+visible = false
+position = Vector2(-640, -320)
+text = ""
+add_theme_font_size_override = 16

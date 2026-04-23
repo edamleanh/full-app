@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=3 uid="uid://world001"]
+
+[ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/systems/FarmGrid.tscn" id="2_farm"]
+[ext_resource type="PackedScene" path="res://scenes/systems/FishingSystem.tscn" id="3_fish"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="4_hud"]
+[ext_resource type="Script" path="res://scenes/World.gd" id="5_world"]
+[ext_resource type="PackedScene" path="res://scenes/entities/ShopNPC.tscn" id="6_shopnpc"]
+[ext_resource type="PackedScene" path="res://scenes/systems/DayNightCycle.tscn" id="7_dnc"]
+[ext_resource type="PackedScene" path="res://scenes/systems/WeatherSystem.tscn" id="8_weather"]
+[ext_resource type="PackedScene" path="res://scenes/systems/HouseRoom.tscn" id="9_house"]
+[ext_resource type="PackedScene" path="res://scenes/systems/ParticleEffects.gd" id="10_particles"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/player_spritesheet.png" id="11_player_tex"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("5_world")
+
+[node name="Background" type="ColorRect" parent="."]
+position = Vector2(-640, -360)
+size = Vector2(2560, 1440)
+color = Color(0.22, 0.48, 0.18)
+
+[node name="WaterZone" type="ColorRect" parent="."]
+position = Vector2(-640, -360)
+size = Vector2(200, 1440)
+color = Color(0.15, 0.42, 0.78)
+
+[node name="WaterRipple" type="ColorRect" parent="."]
+position = Vector2(-640, -360)
+size = Vector2(200, 1440)
+color = Color(0.3, 0.6, 0.9, 0.15)
+
+[node name="FarmZone" type="ColorRect" parent="."]
+position = Vector2(160, 160)
+size = Vector2(480, 320)
+color = Color(0.42, 0.28, 0.14)
+
+[node name="HouseExterior" type="ColorRect" parent="."]
+position = Vector2(320, -200)
+size = Vector2(280, 200)
+color = Color(0.72, 0.58, 0.38)
+
+[node name="HouseRoof" type="ColorRect" parent="."]
+position = Vector2(310, -240)
+size = Vector2(300, 50)
+color = Color(0.55, 0.25, 0.18)
+
+[node name="HouseDoor" type="ColorRect" parent="."]
+position = Vector2(446, -60)
+size = Vector2(28, 50)
+color = Color(0.45, 0.25, 0.12)
+
+[node name="HouseWalls" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HouseWalls"]
+position = Vector2(460, -100)
+
+[node name="PathStones" type="Node2D" parent="."]
+
+[node name="ZoneLabels" type="Node2D" parent="."]
+
+[node name="LabelWater" type="Label" parent="ZoneLabels"]
+position = Vector2(-600, -30)
+text = "🎣 Khu Câu Cá"
+horizontal_alignment = 1
+add_theme_font_size_override = 13
+
+[node name="LabelFarm" type="Label" parent="ZoneLabels"]
+position = Vector2(300, 140)
+text = "🌱 Khu Vườn"
+add_theme_font_size_override = 13
+
+[node name="LabelHouse" type="Label" parent="ZoneLabels"]
+position = Vector2(450, -210)
+text = "🏠 Nhà"
+horizontal_alignment = 1
+add_theme_font_size_override = 13
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(100, 50)
+
+[node name="FarmGrid" parent="." instance=ExtResource("2_farm")]
+position = Vector2(160, 160)
+
+[node name="FishingSystem" parent="." instance=ExtResource("3_fish")]
+
+[node name="HouseRoom" parent="." instance=ExtResource("9_house")]
+position = Vector2(330, -190)
+
+[node name="ShopNPC" parent="." instance=ExtResource("6_shopnpc")]
+position = Vector2(250, 80)
+
+[node name="ParticleEffects" type="Node2D" parent="."]
+
+[node name="DayNightCycle" parent="." instance=ExtResource("7_dnc")]
+
+[node name="WeatherSystem" parent="." instance=ExtResource("8_weather")]
+
+[node name="HUD" parent="." instance=ExtResource("4_hud")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2.5, 2.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true

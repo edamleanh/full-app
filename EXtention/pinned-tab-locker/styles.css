@@ -1,0 +1,146 @@
+/* styles.css for Pinned Tab Locker */
+
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --text-primary: #ffffff;
+    --accent-color: #6366f1; /* Indigo */
+    --accent-hover: #4f46e5;
+    --error-color: #ef4444;
+}
+
+#ptl-lock-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 2147483647 !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+#ptl-lock-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#ptl-lock-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 40px;
+    width: 360px;
+    text-align: center;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#ptl-lock-overlay.visible #ptl-lock-container {
+    transform: scale(1);
+}
+
+.ptl-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.ptl-title {
+    color: var(--text-primary);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.ptl-subtitle {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.ptl-input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#ptl-password-input {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+    text-align: center;
+    letter-spacing: 4px;
+}
+
+#ptl-password-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+#ptl-unlock-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--accent-color);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+#ptl-unlock-btn:hover {
+    background: var(--accent-hover);
+}
+
+#ptl-unlock-btn:active {
+    transform: scale(0.98);
+}
+
+.ptl-error-msg {
+    color: var(--error-color);
+    font-size: 13px;
+    margin-top: 12px;
+    height: 18px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.ptl-error-msg.visible {
+    opacity: 1;
+}
+
+/* Glassmorphism subtle animated background */
+.ptl-background-blob {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    filter: blur(80px);
+    border-radius: 50%;
+    z-index: -1;
+    animation: blob-float 10s infinite alternate;
+}
+
+@keyframes blob-float {
+    from { transform: translate(-30%, -30%); }
+    to { transform: translate(30%, 30%); }
+}

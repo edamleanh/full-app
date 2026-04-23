@@ -1,0 +1,101 @@
+[gd_scene load_steps=2 format=3 uid="uid://minigame001"]
+
+[ext_resource type="Script" path="res://scenes/ui/FishingMiniGame.gd" id="1_mg"]
+
+[node name="FishingMiniGame" type="Control"]
+script = ExtResource("1_mg")
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.5)
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -220.0
+offset_right = 180.0
+offset_bottom = 220.0
+
+[node name="FishLabel" type="Label" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -100.0
+offset_right = 100.0
+offset_top = 8.0
+offset_bottom = 36.0
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 18
+
+[node name="BarBG" type="Panel" parent="Panel"]
+offset_left = 40.0
+offset_top = 48.0
+offset_right = 80.0
+offset_bottom = 348.0
+
+[node name="TargetZone" type="Panel" parent="Panel/BarBG"]
+offset_left = 0.0
+offset_top = 120.0
+offset_right = 40.0
+offset_bottom = 180.0
+
+[node name="CursorIcon" type="Label" parent="Panel/BarBG"]
+offset_left = 4.0
+offset_top = 140.0
+text = ">"
+theme_override_font_sizes/font_size = 20
+
+[node name="WinBar" type="Panel" parent="Panel"]
+offset_left = 100.0
+offset_top = 48.0
+offset_right = 320.0
+offset_bottom = 68.0
+
+[node name="Fill" type="ColorRect" parent="Panel/WinBar"]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 100.0
+offset_bottom = 18.0
+color = Color(0.2, 1.0, 0.4, 1)
+
+[node name="TimerBar" type="Panel" parent="Panel"]
+offset_left = 100.0
+offset_top = 76.0
+offset_right = 320.0
+offset_bottom = 96.0
+
+[node name="Fill" type="ColorRect" parent="Panel/TimerBar"]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 216.0
+offset_bottom = 18.0
+color = Color(1.0, 0.3, 0.3, 1)
+
+[node name="InstructionLabel" type="Label" parent="Panel"]
+offset_left = 10.0
+offset_top = 370.0
+offset_right = 350.0
+offset_bottom = 395.0
+text = "Nhan [SPACE] de giu con tro ca trong vung xanh!"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 12
+
+[node name="CatchLabel" type="Label" parent="Panel"]
+visible = false
+offset_left = 10.0
+offset_top = 160.0
+offset_right = 350.0
+offset_bottom = 200.0
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24

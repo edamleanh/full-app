@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Pinned Tab Locker</title>
+  <style>
+    :root {
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.15);
+      --accent: #6366f1;
+      --text: #ffffff;
+    }
+    body {
+      width: 320px;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+    }
+    .container {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+    }
+    h2 {
+      margin: 0 0 16px 0;
+      font-size: 18px;
+    }
+    .input-group {
+      margin-bottom: 16px;
+      text-align: left;
+    }
+    label {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 6px;
+      opacity: 0.7;
+    }
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      color: white;
+      box-sizing: border-box;
+      outline: none;
+    }
+    input:focus {
+      border-color: var(--accent);
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    .status-msg {
+      font-size: 12px;
+      margin-top: 12px;
+      display: none;
+    }
+    .status-msg.error { color: #ef4444; display: block; }
+    .status-msg.success { color: #10b981; display: block; }
+    
+    .view { display: none; }
+    .view.active { display: block; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="setup-view" class="view">
+      <h2>Thiết Lập Mật Khẩu</h2>
+      <div class="input-group">
+        <label>Nhập mật khẩu mới</label>
+        <input type="password" id="new-pwd" placeholder="••••">
+      </div>
+      <div class="input-group">
+        <label>Xác nhận mật khẩu</label>
+        <input type="password" id="confirm-pwd" placeholder="••••">
+      </div>
+      <button id="set-pwd-btn">Lưu Mật Khẩu</button>
+    </div>
+
+    <div id="main-view" class="view">
+      <h2>Pinned Tab Locker</h2>
+      <div style="margin-bottom: 20px; font-size: 14px; opacity: 0.8;">
+        Tiện ích đang hoạt động.
+      </div>
+      <button id="lock-all-btn" style="background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); margin-bottom: 12px;">
+        Khóa Tất Cả Tab
+      </button>
+      <button id="show-reset-btn" style="background: transparent; border: 1px solid var(--glass-border); font-size: 13px;">
+        Đổi Mật Khẩu
+      </button>
+    </div>
+    
+    <div id="reset-view" class="view">
+      <h2>Đổi Mật Khẩu</h2>
+      <div class="input-group">
+        <label>Mật khẩu hiện tại</label>
+        <input type="password" id="old-pwd" placeholder="••••">
+      </div>
+      <div class="input-group">
+        <label>Mật khẩu mới</label>
+        <input type="password" id="reset-new-pwd" placeholder="••••">
+      </div>
+      <button id="reset-pwd-btn">Cập Nhật</button>
+      <button id="back-btn" style="background: transparent; margin-top: 8px; font-size: 13px;">Quay Lại</button>
+    </div>
+
+    <div id="status" class="status-msg"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

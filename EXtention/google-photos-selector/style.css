@@ -1,0 +1,26 @@
+#gp-select-all-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999999;
+  padding: 12px 24px;
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+
+#gp-select-all-btn:hover {
+  background-color: #1557b0;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#gp-select-all-btn:active {
+  transform: scale(0.96);
+}

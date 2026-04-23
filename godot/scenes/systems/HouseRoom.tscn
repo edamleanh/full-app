@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://houseroom001"]
+
+[ext_resource type="Script" path="res://scenes/systems/HouseRoom.gd" id="1_house"]
+
+[node name="HouseRoom" type="Node2D"]
+script = ExtResource("1_house")
+visible = false
+
+[node name="WallBackground" type="ColorRect" parent="."]
+position = Vector2(-8.0, -8.0)
+size = Vector2(400.0, 280.0)
+color = Color(0.72, 0.62, 0.48, 1)
+
+[node name="FloorGrid" type="Node2D" parent="."]
+
+[node name="FurnitureLayer" type="Node2D" parent="."]
+
+[node name="BuildUI" type="Control" parent="."]
+position = Vector2(-640.0, 300.0)
+size = Vector2(1280.0, 120.0)
+visible = false
+
+[node name="PreviewLabel" type="Label" parent="BuildUI"]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_right = 400.0
+offset_top = 4.0
+offset_bottom = 28.0
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 13
+
+[node name="Catalogue" type="HBoxContainer" parent="BuildUI"]
+offset_left = 20.0
+offset_top = 32.0
+offset_right = 1260.0
+offset_bottom = 110.0
+
+[node name="ExitLabel" type="Label" parent="."]
+position = Vector2(-640.0, -360.0)
+text = "[ESC] Thoat Nha"
+theme_override_font_sizes/font_size = 13
+visible = false

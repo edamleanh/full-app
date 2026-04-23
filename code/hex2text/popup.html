@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giải mã HEX sang Text</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="icon">🔓</div>
+      <h1>Giải mã HEX sang Text</h1>
+    </div>
+
+    <div class="input-section">
+      <label for="hex-input">Dán chuỗi HEX:</label>
+      <textarea id="hex-input" placeholder="48656c6c6f20576f726c64" rows="4" spellcheck="false"></textarea>
+      <button id="decode-btn" class="btn btn-primary">
+        <span class="btn-icon">🔓</span>
+        Giải mã
+      </button>
+    </div>
+
+    <div class="result-section" id="result-section" style="display: none;">
+      <div class="result-header">
+        <label>Kết quả:</label>
+        <button id="copy-btn" class="btn-icon-small" title="Sao chép">
+          📋
+        </button>
+      </div>
+      <div id="result-text" class="result-text"></div>
+
+      <div id="url-actions" class="url-actions" style="display: none;">
+        <button id="open-btn" class="btn btn-url">
+          🔗 Mở link
+        </button>
+        <button id="open-incognito-btn" class="btn btn-url-secondary">
+          🕵️ Mở ẩn danh
+        </button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <small>Hỗ trợ ASCII & UTF-8 • Tự động phát hiện URL</small>
+    </div>
+  </div>
+
+  <script src="shared/decoder.js"></script>
+  <script src="popup.js"></script>
+</body>
+
+</html>

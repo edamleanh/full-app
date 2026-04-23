@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ACS Browser | High Performance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Thanh quản lý Tab -->
+        <div id="tab-bar">
+            <!-- Branding Logo -->
+            <div id="app-branding">
+                <img src="corgi.png" alt="ACS Logo">
+                <!-- <span id="app-name">ACS</span> -->
+            </div>
+            <div id="tabs-container">
+                <!-- Tabs will be dynamically inserted here -->
+                <button id="btn-new-tab" title="New Tab"><span class="material-symbols-outlined" style="font-size: 20px;">add</span></button>
+            </div>
+        </div>
+
+        <!-- Thanh điều hướng (Omnibox) -->
+        <div id="navigation-bar">
+            <div class="nav-buttons">
+                <button id="btn-back" title="Go Back"><span class="material-symbols-outlined" style="font-size: 20px;">arrow_back</span></button>
+                <button id="btn-forward" title="Go Forward"><span class="material-symbols-outlined" style="font-size: 20px;">arrow_forward</span></button>
+                <button id="btn-reload" title="Reload"><span class="material-symbols-outlined" style="font-size: 20px;">refresh</span></button>
+                <button id="btn-pip" title="Xem Ảnh trong ảnh (PiP)"><span class="material-symbols-outlined" style="font-size: 20px;">picture_in_picture_alt</span></button>
+                <button id="btn-dark-mode" title="Bật Dark Mode"><span class="material-symbols-outlined" style="font-size: 20px;">dark_mode</span></button>
+            </div>
+            <div class="url-container">
+                <input type="text" id="url-input" placeholder="Search or enter web address..." autocomplete="off">
+                <button id="btn-add-bookmark" title="Bookmark this tab"><span class="material-symbols-outlined" style="font-size: 18px;">star</span></button>
+                <div id="omnibox-suggestions" class="hidden"></div>
+            </div>
+            <!-- Khu vực Pokémon Parade -->
+            <div id="pokemon-parade-wrapper">
+                <div id="pokemon-parade">
+                    <canvas id="pokemon-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thanh dấu trang (Bookmarks Bar) -->
+        <div id="bookmarks-bar">
+            <!-- Bookmarks will be dynamically inserted here -->
+        </div>
+
+        <!-- Vùng hiển thị nội dung Web -->
+        <div id="web-container">
+            <!-- Webviews will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Live Video Hover Card -->
+    <div id="live-tab-preview-box">
+        <video id="live-tab-video" autoplay muted></video>
+    </div>
+
+    <!-- Context Menu Overlay Màn hình -->
+    <div id="context-menu-overlay" class="hidden" style="position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:9998;"></div>
+
+    <!-- UI Menu Chuột Phải Tuỳ Chỉnh (Custom Context Menu) -->
+    <div id="custom-context-menu" class="hidden" style="z-index:9999;">
+        <!-- Content injected via JS -->
+    </div>
+
+    <!-- UI Quản Lý Từ Điển Gợi Ý (Premium Dictionary Manager) -->
+    <div id="dictionary-modal" class="hidden">
+        <div class="modal-overlay" id="btn-close-modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="header-title">
+                    <span class="material-symbols-outlined">library_books</span>
+                    <h3>Quản Lý Từ Điển Đề Xuất</h3>
+                </div>
+                <button id="btn-close-modal" class="modal-close-btn">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="add-dict-section">
+                    <div class="input-wrapper">
+                        <span class="material-symbols-outlined input-icon">add_link</span>
+                        <input type="text" id="dict-input" placeholder="Nhập tên miền (VD: tiktok.com)..." autocomplete="off">
+                    </div>
+                    <button id="btn-add-dict">Thêm Dữ Liệu</button>
+                </div>
+                <div class="list-container">
+                    <div class="list-header">Danh sách từ khóa hiện tại:</div>
+                    <div id="dict-list" class="styled-scrollbar">
+                        <!-- Danh sách tự ren bằng JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- === Core Utilities === -->
+    <script src="js/core/utils.js"></script>
+
+    <!-- === Tab System === -->
+    <script src="js/features/dark_mode.js"></script>
+    <script src="js/tab/tab_hover_preview.js"></script>
+    <script src="js/tab/tab_ui.js"></script>
+    <script src="js/tab/tab_manager.js"></script>
+
+    <!-- === Features (phụ thuộc vào tab_manager) === -->
+    <script src="js/features/context_menu.js"></script>
+    <script src="js/features/dictionary.js"></script>
+    <script src="js/features/bookmarks.js"></script>
+    <script src="js/features/omnibox.js"></script>
+    <script src="js/features/navigation.js"></script>
+    <!-- <script src="js/features/pokemon_parade.js"></script> -->
+</body>
+</html>

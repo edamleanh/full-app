@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://shopnpc001"]
+
+[ext_resource type="Script" path="res://scenes/entities/ShopNPC.gd" id="1_npc"]
+
+[node name="ShopNPC" type="StaticBody2D"]
+script = ExtResource("1_npc")
+collision_layer = 2
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = RectangleShape2D new()
+shape.size = Vector2(28, 28)
+
+[node name="Sprite" type="Label" parent="."]
+position = Vector2(-14, -28)
+text = "🧑‍🌾"
+add_theme_font_size_override = 28
+
+[node name="Label" type="Label" parent="."]
+position = Vector2(-30, -50)
+text = "[E] Mua/Bán"
+add_theme_font_size_override = 10
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="InteractZone" type="CollisionShape2D" parent="Area2D"]
+shape = CircleShape2D new()
+shape.radius = 48.0

@@ -1,0 +1,65 @@
+{
+  "manifest_version": 3,
+  "name": "Audio Tab Manager",
+  "version": "1.0",
+  "description": "Mute YouTube and Unmute SoundCloud with a shortcut.",
+  "permissions": ["tabs", "scripting"],
+  "host_permissions": ["*://*.youtube.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "toggle-audio": {
+      "suggested_key": {
+        "default": "Alt+9",
+        "mac": "Command+Shift+9"
+      },
+      "description": "Mute YouTube & Unmute SoundCloud"
+    },
+    "toggle-audio-reverse": {
+      "suggested_key": {
+        "default": "Alt+8",
+        "mac": "Command+Shift+8"
+      },
+      "description": "Mute SoundCloud & Unmute YouTube"
+    },
+    "toggle-pip": {
+      "suggested_key": {
+        "default": "Alt+7",
+        "mac": "Command+Shift+7"
+      },
+      "description": "Exit Picture-in-Picture on YouTube"
+    },
+    "toggle-pip-smart": {
+      "suggested_key": {
+        "default": "Alt+6",
+        "mac": "Command+Shift+6"
+      },
+      "description": "Toggle Picture-in-Picture on YouTube"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "inject.js"
+      ],
+      "matches": [
+        "*://*.youtube.com/*"
+      ]
+    }
+  ],
+  "icons": {
+    "128": "icon.png"
+  }
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stripe Style Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      background: #0a2540;
+      color: #fff;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      background: linear-gradient(120deg, #635bff 0%, #0a2540 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -2px;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: #b3c1d1;
+      margin-bottom: 2rem;
+    }
+    .hero .cta {
+      background: #fff;
+      color: #635bff;
+      border: none;
+      border-radius: 24px;
+      padding: 0.9rem 2.2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 16px 0 #635bff44;
+      transition: background 0.2s, color 0.2s;
+    }
+    .hero .cta:hover {
+      background: #635bff;
+      color: #fff;
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      background: #fff;
+      color: #0a2540;
+      padding: 4rem 2rem;
+    }
+    .feature {
+      background: #f6f9fc;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px #0a25400a;
+      padding: 2rem 1.5rem;
+      max-width: 320px;
+      flex: 1 1 280px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .feature:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 32px #635bff22;
+    }
+    .feature img {
+      width: 56px;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 2px 8px #635bff22;
+    }
+    .feature h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .feature p {
+      margin: 0;
+      color: #425466;
+      font-size: 1rem;
+    }
+    .footer {
+      text-align: center;
+      color: #b3c1d1;
+      padding: 2rem 0 1rem 0;
+      background: #0a2540;
+      font-size: 1rem;
+    }
+    @media (max-width: 900px) {
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+    <canvas id="gradient-canvas" style="width:100%; height:100vh; --gradient-color-1: #ef008f; --gradient-color-2: #6ec3f4; --gradient-color-3: #7038ff; --gradient-color-4: #ffba27;"></canvas>
+  <section class="hero">
+    <h1>Thanh toán hiện đại cho mọi doanh nghiệp</h1>
+    <p>Giải pháp thanh toán, quản lý và phát triển kinh doanh với giao diện hiện đại, hiệu ứng mượt mà như Stripe.</p>
+    <button class="cta">Bắt đầu ngay</button>
+  </section>
+  <section class="features">
+    <div class="feature">
+      <img src="/wp-content/uploads/payment.png" alt="Thanh toán">
+      <h3>Thanh toán đa kênh</h3>
+      <p>Hỗ trợ nhiều phương thức thanh toán, tích hợp dễ dàng.</p>
+    </div>
+    <div class="feature">
+      <img src="/wp-content/uploads/secure.png" alt="Bảo mật">
+      <h3>Bảo mật cao</h3>
+      <p>Bảo vệ dữ liệu và giao dịch với công nghệ mã hóa tiên tiến.</p>
+    </div>
+    <div class="feature">
+      <img src="/wp-content/uploads/analytics.png" alt="Phân tích">
+      <h3>Phân tích thông minh</h3>
+      <p>Báo cáo, thống kê trực quan giúp phát triển doanh nghiệp.</p>
+    </div>
+    <div class="feature">
+      <img src="/wp-content/uploads/support.png" alt="Hỗ trợ">
+      <h3>Hỗ trợ 24/7</h3>
+      <p>Đội ngũ hỗ trợ chuyên nghiệp, sẵn sàng mọi lúc.</p>
+    </div>
+  </section>
+  <div class="footer">
+    © 2026 Stripe Style Demo. Không phải sản phẩm chính thức của Stripe.
+  </div>
+  <script>
+    // Hiệu ứng nút CTA
+    document.querySelector('.cta').addEventListener('click', function() {
+      this.textContent = 'Đang tải...';
+      setTimeout(() => {
+        this.textContent = 'Bắt đầu ngay';
+        alert('Chào mừng bạn đến với demo Stripe Style!');
+      }, 1200);
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/kevinhufnagl/stripe-gradient-animation@master/gradient.js"></script>
+<script>
+  var gradient = new Gradient();
+  gradient.initGradient('#gradient-canvas');
+</script>
+</body>
+</html>

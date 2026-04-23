@@ -1,0 +1,2907 @@
+<?php
+/**
+ * Template Name: Thiết kế app
+ * Template Post Type: service
+ */
+get_header(); ?>
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+
+
+<style>
+    .container-grid {
+        display: grid;
+        grid-template-areas: "stack"; 
+        margin-top: -132px;
+    }
+
+    .container-grid h1 {
+        grid-area: stack;
+            font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: var(--h1-size);
+    margin: 0;
+    width: 100%;
+    letter-spacing: -1px;
+    line-height: var(--h1-height);
+    }
+
+    /* Tạo hiệu ứng Glitch nhẹ để biết là có 4 lớp */
+    .container-grid h1:nth-child(1) { color: rgba(58, 58, 58, 0.3); z-index: 2 !important; }
+    .container-grid h1:nth-child(2) { color: rgba(58, 58, 58, 1); z-index: 1 !important; mix-blend-mode: color-burn;}
+  /* CUSTOM BREAKPOINT */
+  @media only screen and (max-width: 1144px) {
+    :root {
+      --h1-size: 80px;
+      --h1-height: 85px;
+    }
+
+    /* GENERAL LAYOUT */
+    .section-container {
+      padding: 0 var(--spacing-md);
+    }
+
+    /* HERO SECTION */
+    .hero-phone {
+      height: 550px;
+      transform: translateY(-60px);
+    }
+
+    .hero .col-left {
+      width: 60%;
+    }
+
+    .hero .col-right {
+      width: 40%;
+    }
+
+    /* PARTNERS GRID */
+    .partners-grid {
+      margin: -60px 0 var(--spacing-xl) 0;
+    }
+  }
+
+  /* CUSTOM BREAKPOINT (850px) */
+  @media only screen and (max-width: 850px) {
+    :root {
+      --h1-size: 70px;
+      --h1-height: 75px;
+    }
+
+    #gradient-canvas {
+      height: 700px;
+    }
+
+    /* HERO SECTION */
+    .hero-phone {
+      transform: translateY(-85px);
+    }
+
+    /* PARTNERS GRID */
+    .partners-grid img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* UNIFIED PLATFORM */
+    .unified-platform-section {
+      padding: var(--spacing-lg) 0;
+    }
+
+    /* INTEGRATIONS SECTION */
+    .integrations-section {
+      padding: var(--spacing-xl) 0;
+    }
+
+    .integrations-section::before {
+      height: 900px;
+    }
+
+    .integrations-section .col-left {
+      width: 60%;
+    }
+
+    .integrations-section .col-right {
+      width: 40%;
+    }
+
+    /* WHY SWIPE SECTION */
+
+    .why-swipe-section {
+      padding: calc(var(--spacing-xl) * 2.5) 0;
+    }
+
+    /* GLOBAL SECTION */
+    .global-section {
+      padding: var(--spacing-xl) 0 0 0;
+    }
+
+    /* VIRTUAL EVENT SECTION */
+    .virtual-events-section {
+      padding: var(--spacing-xl) 0;
+    }
+  }
+
+  /* TABLET SIZE STYLES */
+  @media only screen and (max-width: 768px) {
+    :root {
+      --h1-size: 58px;
+      --h1-height: 65px;
+      --h3-size: 34px;
+      --h6-size: 16px;
+    }
+
+    /* NAVBAR STYLES */
+    .navbar {
+      margin: var(--spacing-md) 0;
+    }
+
+    .navbar .menu {
+      display: none;
+    }
+
+    .navbar .navbar-button {
+      display: none;
+    }
+
+    .navbar .hamburger-button {
+      /* width: 50px;
+        height: 50px; */
+      background-color: rgba(250, 250, 250, 0.25);
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+
+    .navbar .hamburger-button:hover {
+      cursor: pointer;
+    }
+
+    .navbar .hamburger-button .bar {
+      width: 36px;
+      height: 4px;
+      background-color: var(--bg-white);
+      margin: 3px 0;
+      border-radius: 2px;
+    }
+
+    /* ṂOBILE NAVBAR */
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-light);
+      width: calc(100% - 32px);
+      position: absolute;
+      top: 76px;
+      z-index: 5;
+      border-radius: 10px;
+      transition: opacity 0.5s ease;
+    }
+
+    .mobile-nav-show {
+      opacity: 0;
+    }
+
+    .mobile-nav a {
+      padding: var(--spacing-md);
+      color: var(--text-dark);
+      font-size: 18px;
+    }
+
+    /* ANIMATION PART */
+
+    .animateBar1 {
+      animation: flipBar1 0.5s ease-in-out;
+      animation-fill-mode: forwards;
+    }
+
+    .animateBar2 {
+      animation: fadeBar2 0.5s ease-in-out;
+      animation-fill-mode: forwards;
+    }
+
+    .animateBar3 {
+      animation: flipBar3 0.5s ease-in-out;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes flipBar1 {
+      from {
+        transform: rotate(0);
+      }
+
+      to {
+        transform: rotate(45deg) translate(6px, 8px);
+      }
+    }
+
+    @keyframes fadeBar2 {
+      from {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+
+      to {
+        transform: scaleX(0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes flipBar3 {
+      from {
+        transform: rotate(0);
+      }
+
+      to {
+        transform: rotate(-45deg) translate(6px, -8px);
+      }
+    }
+
+    /* HERO STYLES */
+
+    main {
+      margin: 0;
+    }
+
+    .hero .two-column {
+      align-items: center;
+    }
+
+    .hero .col-left {
+      width: 60%;
+    }
+
+    .hero .col-right {
+      width: 40%;
+    }
+
+    .hero-phone {
+      height: 450px;
+      transform: translateX(32px);
+    }
+
+    .hero .hero-phone-container {
+      height: auto;
+    }
+
+    /* PARTNERS GRID */
+    .partners-grid {
+      margin: var(--spacing-xl) 0;
+    }
+
+    /* UNIFIED PLATFORM SECTION*/
+    .unified-platform-section h2 {
+      width: 100%;
+    }
+
+    /* INTEGRATIONS SECTION */
+    .integrations-section .card-container {
+      flex-direction: column;
+    }
+
+    .integrations-section .card-container .card {
+      width: 100%;
+    }
+
+    /* WHY SWIPE SECTIONS */
+
+    .why-swipe-section {
+      padding: var(--spacing-xl) 0;
+    }
+
+    .why-swipe-section .card-container {
+      flex-wrap: wrap;
+    }
+
+    .why-swipe-section .card-container .card {
+      width: 50%;
+      margin: var(--spacing-md) 0;
+    }
+
+    /* GLOBAL SECTION */
+
+    .global-section .card-container {
+      flex-wrap: wrap;
+      margin: var(--spacing-lg) 0;
+    }
+
+    .global-section .card-container .card {
+      width: 50%;
+      margin: var(--spacing-md) 0;
+    }
+
+    /* GETTING STARTED SECTION */
+
+    .getting-started-section {
+      padding: var(--spacing-lg) 0;
+    }
+
+    .getting-started-section .two-column {
+      align-items: center;
+    }
+
+    .getting-started-section .col-right {
+      flex-wrap: wrap;
+    }
+
+    .getting-started-section .col-right .card {
+      width: 100%;
+      margin: var(--spacing-md) 0;
+    }
+  }
+
+  /* MOBILE SIZE BREAKPOINT */
+  @media only screen and (max-width: 550px) {
+    :root {
+      --h1-size: 50px;
+      --h1-height: 60px;
+      --h3-size: 34px;
+      --h6-size: 16px;
+    }
+
+    .two-column {
+      flex-direction: column;
+    }
+
+    .two-column .col-left {
+      width: 100%;
+      padding: 0;
+    }
+
+    .two-column .col-right {
+      width: 100%;
+      padding: 0;
+    }
+
+    p {
+      text-align: justify;
+    }
+
+    /* HERO STYLES */
+    #gradient-canvas {
+      height: 780px;
+      /* My Changes */
+      top: -10%;
+    }
+
+    main {
+      margin: var(--spacing-lg) 0 0 0;
+    }
+
+    .hero .two-column .hero-phone-container {
+      display: none;
+    }
+
+    /* PARTNERS GRID SECTION */
+    .partners-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* UNIFIED SECTION */
+    .unified-platform-section {
+      padding: var(--spacing-lg) 0;
+    }
+
+    /* INTEGRATIONS SECTION */
+    .integrations-section {
+      padding: var(--spacing-lg) 0;
+    }
+
+    .integrations-section::before {
+      height: 100%;
+    }
+
+    .integrations-section .col-right {
+      display: none;
+    }
+
+    /* WHY SWIPE SECTION */
+    .why-swipe-section {
+      padding: var(--spacing-lg) 0;
+    }
+
+    .why-swipe-section .card-container .card {
+      width: 100%;
+      margin: var(--spacing-sm) 0;
+    }
+
+    .why-swipe-section .card-container .card .icon {
+      height: 35px;
+    }
+
+    /* GLOBAL SECTION */
+
+    .global-section {
+      padding: var(--spacing-lg) 0 0 0;
+    }
+
+    .global-section .card-container {
+      margin: var(--spacing-lg) 0;
+    }
+
+    .global-section .card-container .card {
+      width: 100%;
+      margin: var(--spacing-sm) 0;
+    }
+
+    #globe {
+      opacity: 10%;
+    }
+
+    /* VIRTUAL EVENTS SECTION */
+
+    .virtual-events-section {
+      padding: 0;
+    }
+
+    .virtual-events-section .swipe-sessions-card {
+      margin: var(--spacing-lg) 0;
+      width: 100%;
+    }
+
+    .virtual-events-section .swipe-sessions-card .secondary-text {
+      width: 100%;
+    }
+
+    .virtual-events-section .swipe-sessions-card .card-top {
+      height: 40%;
+    }
+
+    #sessions-logo {
+      width: 300px;
+    }
+
+    /* GETTING STARTED SECTION */
+    .getting-started-section {
+      padding: var(--spacing-lg) 0;
+    }
+
+    /* FOOTER SECTION */
+    .footer {
+      padding: var(--spacing-md) 0;
+    }
+
+    .footer .section-container {
+      flex-wrap: wrap;
+    }
+
+    .footer .col {
+      width: 50%;
+    }
+
+    .footer .col ul li {
+      margin: var(--spacing-sm) 0;
+    }
+
+    .footer .col a {
+      font-size: 12px;
+    }
+
+    #footer-logo {
+      width: 70px;
+    }
+
+    .footer .icon-link img {
+      width: 18px;
+    }
+  }
+  /* VARIABLES */
+  :root {
+    /* TEXT VARIABLES */
+    --text-dark: #000;
+    --text-light: #fff;
+    --text-grey: #adbdcc;
+    --body-font: "Roboto", sans-serif;
+    --heading-font: "Lato", sans-serif;
+    --h1-size: 94px;
+    --h1-height: 108px;
+    --h2-size: 50px;
+    --h2-height: 75px;
+    --h3-size: 40px;
+    --h4-size: 32px;
+    --h5-size: 28px;
+    --h6-size: 22px;
+    --subtitle-size: 17px;
+    --subtitle-height: 26px;
+    --p-size: 18px;
+    --p-height: 26px;
+    --secondary-text-size: 14px;
+    --secondary-text-height: 18px;
+    --button-size: 16px;
+
+    /* SPACING VARIABLES */
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 32px;
+    --spacing-xl: 64px;
+    --standard-width: 1144px;
+
+    /* COLOR VARIABLES */
+    --purple-1: #6962f7;
+    --purple-2: #7000ff;
+    --blue-1: #00d4ff;
+    --primary-accent: #0a2540;
+    --primary-button-hover: #6d7a88;
+    --bg-white: #fff;
+    --bg-light: #f7f9fc;
+
+    --standard-border-radius: 20px;
+    --standard-box-shadow: 0px 2px 40px rgba(0, 0, 0, 0.15);
+    --primary-gradient: linear-gradient(
+      101.33deg,
+      #08209a 0.76%,
+      #6563ff 33.33%,
+      #36c5f0 76.92%,
+      #83e2ff 96.96%
+    );
+  }
+
+  /* GENERAL ELEMENT STYLES */
+
+  .landing-page-wrapper {
+    width: 100%;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .landing-page-wrapper {
+    font-family: var(--body-font);
+    color: var(--text-dark);
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    padding: var(--spacing-sm) 0 0 0;
+    background-color: var(--bg-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  main {
+    width: 100%;
+    margin: var(--spacing-xl) 0 0 0;
+    /* CHANGES FOR CANVAS PURPOSE */
+    position: relative;
+  }
+
+  h1 {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: var(--h1-size);
+    margin: 0;
+    width: 100%;
+    letter-spacing: -1px;
+    line-height: var(--h1-height);
+  }
+
+  h2 {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: var(--h3-size);
+    margin: 0;
+    width: 100%;
+  }
+
+  h3 {
+    font-family: var(--heading-font);
+    font-weight: 500;
+    font-size: var(--h3-size);
+    margin: 0;
+    width: 100%;
+  }
+
+  h4 {
+    font-family: var(--heading-font);
+    font-weight: 500;
+    font-size: var(--h4-size);
+    margin: 0;
+    width: 100%;
+    letter-spacing: 0.25px;
+  }
+
+  h5 {
+    font-family: var(--heading-font);
+    font-weight: 500;
+    font-size: var(--h5-size);
+    margin: 0;
+    width: 100%;
+  }
+
+  h6 {
+    font-family: var(--heading-font);
+    font-weight: 500;
+    font-size: var(--h6-size);
+    margin: 0;
+    width: 100%;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--purple-1);
+    font-weight: 500;
+    transition: color 0.25s ease;
+  }
+
+  a:hover {
+    color: var(--primary-accent);
+  }
+
+  p {
+    font-size: var(--p-size);
+    line-height: var(--p-height);
+    font-weight: 400;
+    margin: var(--spacing-md) 0;
+  }
+
+  /* LAYOUT STYLES  */
+  .section-container {
+    width: 100%;
+    max-width: var(--standard-width);
+  }
+
+  .two-column {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+  }
+
+  .two-column > .col-left {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 0 var(--spacing-md) 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+  }
+
+  .two-column > .col-right {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 0 0 0 var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) 0;
+  }
+
+  .card .icon {
+    height: 50px;
+    margin: 0 0 var(--spacing-sm) 0;
+  }
+
+  .card h3 {
+    font-family: var(--heading-font);
+    font-weight: 500;
+    font-size: var(--h6-size);
+    margin: 0;
+    width: 100%;
+  }
+
+  .subtitle,
+  .subtitle2 {
+    color: var(--purple-1);
+    font-family: var(--heading-font);
+    font-weight: 500;
+    font-size: var(--subtitle-size);
+    line-height: var(--subtitle-height);
+  }
+
+  .subtitle2 {
+    color: var(--blue-1);
+  }
+
+  .secondary-text {
+    font-size: var(--secondary-text-size);
+    line-height: var(--secondary-text-height);
+    color: var(--text-grey);
+    letter-spacing: 0.25px;
+  }
+
+  /* BUTTON STYLES HERO BACKGROUND */
+  .primary-button {
+    font-family: var(--body-font);
+    font-size: var(--button-size);
+    letter-spacing: 1.25px;
+    font-weight: bold;
+    border-radius: 20px;
+    border: none;
+    background-color: var(--primary-accent);
+    color: var(--text-light);
+    padding: var(--spacing-sm) var(--spacing-md);
+    transition: all 0.15s ease;
+  }
+
+  .primary-button:hover {
+    background-color: var(--primary-button-hover);
+    cursor: pointer;
+  }
+
+  .secondary-button {
+    font-family: var(--body-font);
+    font-size: var(--button-size);
+    letter-spacing: 1.25px;
+    font-weight: bold;
+    border-radius: 20px;
+    border: none;
+    background-color: transparent;
+    color: var(--primary-accent);
+    transition: all 0.15s ease;
+  }
+
+  .secondary-button:hover {
+    opacity: 0.75;
+    cursor: pointer;
+  }
+
+  .with-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .with-icon > img {
+    transition: transform 0.25s ease;
+  }
+
+  .with-icon:hover > img {
+    transform: translateX(4px);
+  }
+
+  /* NAVBAR */
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: var(--standard-width);
+    padding: 0 var(--spacing-md);
+    margin: 0 0 var(--spacing-xl) 0;
+    box-sizing: border-box;
+  }
+
+  .mobile-nav {
+    display: none;
+  }
+
+  .menu {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .menu a {
+    color: var(--text-light);
+    margin: 0 var(--spacing-md);
+    font-weight: bold;
+  }
+
+  .menu a:hover {
+    text-decoration: underline;
+  }
+
+  .navbar .hamburger-button {
+    display: none;
+  }
+
+  .navbar-button {
+    background: rgba(250, 250, 250, 0.25);
+  }
+
+  .navbar-button:hover {
+    background: rgba(250, 250, 250, 0.5);
+  }
+
+  /* ANIMATED GRADIENT HERO BACKGROUND */
+
+  #gradient-canvas {
+    /* width: 200%;
+	height: 970px;
+	transform: rotate(-10deg);
+	position: absolute;
+	top: -600px;
+	left: -50%;
+	z-index: -1;
+	--gradient-color-1: #ef008f;
+	--gradient-color-2: #6ec3f4;
+	--gradient-color-3: #7038ff;
+	--gradient-color-4: #ffba27; */
+    /* My Changes  */
+    width: 100%;
+    height: 800px;
+    transform: skewY(-10deg);
+    top: -10%;
+    left: 0;
+    margin-top: -400px;
+    z-index: -1;
+    --gradient-color-1: #ef008f;
+    --gradient-color-2: #6ec3f4;
+    --gradient-color-3: #7038ff;
+    --gradient-color-4: #ffba27;
+  }
+
+  /* HERO STYLES */
+
+  .hero {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero p {
+    max-width: 480px;
+  }
+
+  .hero h1{
+    margin-top: -300px ;
+  }
+
+  .button-container {
+    display: flex;
+    margin: var(--spacing-md) 0;
+  }
+
+  .button-container button:nth-of-type(2) {
+    margin: 0 0 0 var(--spacing-md);
+    color: var(--purple-2);
+  }
+
+  .hero .hero-phone-container {
+    height: 564px;
+    align-items: flex-end;
+  }
+
+  .hero-phone {
+    height: 628px;
+    transform: translate(32px, -32px);
+  }
+
+  /* PARTERNERS SECTION */
+  .partners-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin: var(--spacing-xl) 0;
+    column-gap: var(--spacing-md);
+    row-gap: var(--spacing-lg);
+  }
+
+  .partners-grid img {
+    height: 60px;
+    place-self: center;
+  }
+
+  /* UNIFIED PLATFORM SECTION */
+
+  .unified-platform-section {
+    padding: var(--spacing-xl) 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--bg-light);
+  }
+
+  .unified-platform-section h2 {
+    width: 50%;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .unified-platform-section .primary-button {
+    background-color: var(--purple-1);
+    margin: var(--spacing-md) 0;
+  }
+
+  .unified-platform-section .primary-button:hover {
+    background-color: var(--primary-accent);
+  }
+
+  /* GRAPHIC GRID SECTION */
+
+  .graphic-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--bg-light);
+  }
+
+  .graphic-grid {
+    display: grid;
+    grid-template-areas:
+      "card slack slack"
+      "phone slack slack"
+      "phone dash dash";
+    grid-gap: var(--spacing-lg);
+    padding: var(--spacing-lg) 0;
+  }
+
+  #credit-card {
+    grid-area: card;
+    width: 100%;
+    box-shadow: var(--standard-box-shadow);
+    border-radius: var(--standard-border-radius);
+  }
+
+  #slack-invoice {
+    grid-area: slack;
+    width: 100%;
+    box-shadow: var(--standard-box-shadow);
+    border-radius: var(--standard-border-radius);
+  }
+
+  #phone {
+    grid-area: phone;
+    width: 100%;
+  }
+
+  #dash {
+    grid-area: dash;
+    width: 100%;
+    box-shadow: var(--standard-box-shadow);
+    border-radius: var(--standard-border-radius);
+  }
+
+  /* INTEGRATIONS SECTION STYLES */
+
+  .integrations-section {
+    color: var(--text-light);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: calc(var(--spacing-xl) * 3) 0;
+    z-index: 1;
+  }
+
+  .integrations-section::before {
+    content: "";
+    width: 100%;
+    height: 1100px;
+    background-color: var(--primary-accent);
+    position: absolute;
+    top: -32px;
+    left: 0;
+    z-index: -1;
+    transform: skewY(-10deg);
+  }
+
+  .integrations-section::after {
+    content: "";
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    background-color: var(--bg-light);
+    top: 0;
+    left: 0;
+    z-index: -2;
+  }
+
+  .integrations-section .primary-button {
+    background-color: var(--blue-1);
+    color: var(--primary-accent);
+    margin: var(--spacing-md) 0 0 0;
+  }
+
+  .integrations-section .primary-button:hover {
+    background-color: var(--bg-white);
+  }
+
+  .integrations-section .secondary-button {
+    color: var(--blue-1);
+  }
+
+  .integrations-section .card-container {
+    display: flex;
+    margin: var(--spacing-lg) 0;
+  }
+
+  .integrations-section .card-container .card {
+    width: 50%;
+  }
+
+  .integrations-section .secondary-button {
+    color: var(--blue-1);
+  }
+
+  #api-code {
+    max-width: 470px;
+    margin: 0 0 var(--spacing-md) 0;
+    border-radius: var(--standard-border-radius);
+  }
+
+  #terminal-code {
+    max-width: 470px;
+    border-radius: var(--standard-border-radius);
+  }
+
+  /* WHY SWIPE SECTION */
+
+  .why-swipe-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: calc(var(--spacing-xl) * 3) 0;
+  }
+
+  .why-swipe-section .card-container {
+    display: flex;
+    margin: var(--spacing-lg) 0;
+  }
+
+  .why-swipe-section .card-container .card {
+    width: 25%;
+    padding: 0 var(--spacing-sm) 0 0;
+    margin: 0 var(--spacing-md) 0 0;
+    box-sizing: border-box;
+  }
+
+  .why-swipe-section .secondary-text {
+    color: var(--text-dark);
+  }
+
+  /* GLOBAL SECTION */
+
+  .global-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: var(--text-light);
+    position: relative;
+    padding: calc(var(--spacing-xl) * 3) 0 0 0;
+  }
+
+  .global-section::before {
+    content: "";
+    width: 100%;
+    height: 1200px;
+    background-color: var(--primary-accent);
+    position: absolute;
+    top: -32px;
+    left: 0;
+    transform: skewY(-10deg);
+    z-index: -1;
+  }
+
+  .global-section a {
+    color: var(--blue-1);
+  }
+
+  .global-section a:hover {
+    color: var(--text-light);
+  }
+
+  .global-section .card-container {
+    display: flex;
+    margin: calc(var(--spacing-xl) * 2) 0;
+  }
+
+  .global-section .card-container .card {
+    width: 25%;
+    box-sizing: border-box;
+    padding: 0 var(--spacing-sm) 0 0;
+    margin: 0 var(--spacing-md) 0 0;
+  }
+
+  .global-section .card-container .card h3 {
+    border-left: 2px solid var(--blue-1);
+    padding: 0 0 0 var(--spacing-sm);
+    line-height: 28px;
+  }
+
+  #globe {
+    /* max-width: 844px;
+	opacity: 25%;
+	position: absolute;
+	top: 10%; */
+    /* CHANGES */
+    max-width: 740px;
+    opacity: 25%;
+    position: absolute;
+    top: 14%;
+  }
+
+  /* VIRTUAL EVENTS SECTION */
+
+  .virtual-events-section {
+    display: flex;
+    justify-content: center;
+    padding: calc(var(--spacing-xl) * 2) 0;
+    position: relative;
+  }
+
+  .virtual-events-section::before {
+    content: "";
+    background-color: var(--bg-white);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+  }
+
+  .virtual-events-section .primary-button {
+    background-color: var(--purple-1);
+    margin: var(--spacing-md) 0 0 0;
+  }
+
+  .virtual-events-section .primary-button:hover {
+    background-color: var(--primary-accent);
+  }
+
+  .virtual-events-section .col-left {
+    height: 446px;
+    padding: 0 var(--spacing-xl) 0 0;
+  }
+
+  .swipe-sessions-card {
+    width: 540px;
+    height: 446px;
+    box-shadow: var(--standard-box-shadow);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .swipe-sessions-card .card-top {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .swipe-sessions-card .card-top::before {
+    background: var(--primary-gradient);
+    content: "";
+    width: 100%;
+    height: 150%;
+    position: absolute;
+    top: -40%;
+    transform: skewY(-5deg);
+    z-index: 1;
+  }
+
+  #sessions-logo {
+    z-index: 2;
+    width: 338px;
+  }
+
+  .virtual-events-section .avatars {
+    position: absolute;
+    bottom: -70px;
+    left: var(--spacing-xl);
+    z-index: 3;
+  }
+
+  .virtual-events-section .avatars img {
+    width: 80px;
+  }
+
+  .virtual-events-section .avatars img:nth-of-type(2) {
+    position: absolute;
+    left: 55px;
+  }
+
+  .virtual-events-section .card-bottom {
+    width: 100%;
+    height: 50%;
+    box-sizing: border-box;
+    padding: var(--spacing-xl);
+  }
+
+  .virtual-events-section .card-bottom .subtitle {
+    margin: var(--spacing-lg) 0 0 0;
+  }
+
+  .virtual-events-section .card-bottom .secondary-text {
+    color: var(--text-dark);
+    font-weight: 700;
+    width: 50%;
+  }
+
+  /* GETTING STARTED SECTION */
+
+  .getting-started-section {
+    display: flex;
+    justify-content: center;
+    padding: var(--spacing-xl) 0;
+  }
+
+  .getting-started-section .primary-button {
+    background-color: var(--purple-1);
+    margin: var(--spacing-md) 0;
+  }
+
+  .getting-started-section .primary-button:hover {
+    background-color: var(--primary-accent);
+  }
+
+  .getting-started-section .col-left {
+    padding: 0 var(--spacing-xl) 0 0;
+  }
+
+  .getting-started-section .col-right {
+    flex-direction: row;
+  }
+
+  .getting-started-section .col-right .card {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 0 var(--spacing-sm) 0 0;
+    margin: 0 var(--spacing-md) 0 0;
+  }
+
+  .getting-started-section .col-right .card .secondary-button {
+    color: var(--purple-2);
+    padding-left: 0;
+  }
+
+  /* FOOTER STYLES */
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    background-color: var(--bg-light);
+    padding: var(--spacing-xl) 0;
+  }
+
+  #footer-logo {
+    max-width: 108px;
+    margin: 0 0 var(--spacing-md) 0;
+  }
+
+  .footer .section-container {
+    display: flex;
+  }
+
+  .footer .col {
+    width: 25%;
+  }
+
+  .footer .col ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .footer .col ul li {
+    margin: var(--spacing-md) 0;
+  }
+
+  .footer .col a {
+    color: var(--text-dark);
+    font-weight: normal;
+  }
+
+  .footer .col a:hover {
+    color: var(--purple-1);
+    text-decoration: underline;
+  }
+
+  .footer .icon-link {
+    display: flex;
+    align-items: center;
+    margin: var(--spacing-md) 0;
+  }
+
+  .footer .icon-link img {
+    width: 24px;
+    padding: 0 var(--spacing-sm) 0 0;
+  }
+
+  .footer h3 {
+    font-size: var(--h6-size);
+    font-weight: 700;
+  }
+</style>
+<div class="landing-page-wrapper">
+  <main>
+    <!-- GRADIENT BACKGROUND -->
+    <canvas id="gradient-canvas"></canvas>
+
+    <!-- HERO SECTION -->
+    <div class="hero">
+      <div class="section-container two-column" >
+        <div class="col-left">
+          <h1>Financial infrastructure to grow revenue</h1>
+          <div class="container-grid">
+ 
+            <h1>Financial infrastructure to grow your revenue </h1>
+            <h1>Financial infrastructure to grow your revenue </h1>
+          </div>
+          <p>
+            Tons of companies all over the world use Swipe’s seamless platform
+            to manage their businesses's entire financial transaction
+            infrastructure online.
+          </p>
+          <div class="button-container">
+            <button class="primary-button with-icon">
+              Start now
+              <img
+                src="/wp-content/uploads/2026/01/arrow-right-light.svg"
+                alt=""
+              />
+            </button>
+            <button class="secondary-button with-icon">
+              Contact sales
+              <img
+                src="/wp-content/uploads/2026/01/arrow-right-purple.svg"
+                alt=""
+              />
+            </button>
+          </div>
+        </div>
+        <div class="col-right hero-phone-container">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    /* --- PHẠM VI CÔ LẬP (SCOPED CSS) --- */
+    #checkout-mini-wrapper {
+        /* Reset cơ bản */
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.4;
+        color: #333;
+        background-color: transparent;
+        margin-top: -650px !important;
+        /* Kích thước giới hạn theo yêu cầu */
+        width: 100%;
+        max-width: 260px; 
+        max-height: 520px;
+        margin: 0 auto;
+        z-index: 10;
+        /* Vô hiệu hóa tương tác (Biến thành ảnh tĩnh) */
+        pointer-events: none; 
+        user-select: none;   
+    }
+
+    #checkout-mini-wrapper * {
+        box-sizing: border-box;
+    }
+
+    /* Card chính (Giảm padding) */
+    #checkout-mini-wrapper .checkout-card {
+        background: #ffffff;
+        width: 100%;
+        height: 100%;
+        padding: 20px 16px; /* Padding nhỏ hơn: 20px dọc, 16px ngang */
+        border-radius: 32px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.28);
+        border: 1px solid #e0e0e0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Header (Thu nhỏ ảnh và chữ) */
+    #checkout-mini-wrapper .product-header {
+        text-align: center;
+        margin-bottom: 16px;
+    }
+
+    #checkout-mini-wrapper .product-img-placeholder {
+        width: 50px;  /* Giảm size ảnh */
+        height: 65px;
+        background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+        border-radius: 6px;
+        margin: 0 auto 10px;
+        position: relative;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    
+    /* Các lớp giả lập bìa tạp chí cũng thu nhỏ theo */
+    #checkout-mini-wrapper .product-img-placeholder::before {
+        width: 38px; height: 50px;
+        top: 6px; left: 50%; transform: translateX(-30%);
+        border-radius: 4px;
+    }
+    
+    #checkout-mini-wrapper .product-img-placeholder::after {
+        width: 38px; height: 50px;
+        top: 12px; left: 50%; transform: translateX(-50%);
+        border-radius: 4px;
+        background: radial-gradient(circle at center bottom, #ff9a9e 0%, #fad0c4 100%);
+    }
+
+    #checkout-mini-wrapper .product-title {
+        font-size: 13px; /* Font nhỏ hơn */
+        font-weight: 700;
+        color: #0a2540;
+        margin-bottom: 2px;
+        margin-top: 0;
+    }
+
+    #checkout-mini-wrapper .product-price {
+        font-size: 12px;
+        color: #666;
+    }
+
+    /* Nút Apple Pay nhỏ */
+    #checkout-mini-wrapper .btn-apple {
+        width: 100%;
+        background-color: #000000;
+        color: white;
+        border: none;
+        padding: 8px; /* Giảm padding */
+        border-radius: 5px;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        font-weight: 600;
+    }
+
+    /* Divider */
+    #checkout-mini-wrapper .divider {
+        display: flex;
+        align-items: center;
+        margin: 16px 0; /* Giảm khoảng cách */
+        color: #888;
+        font-size: 11px; /* Font nhỏ */
+    }
+
+    #checkout-mini-wrapper .divider::before, 
+    #checkout-mini-wrapper .divider::after {
+        content: ""; flex: 1; height: 1px; background-color: #e6e6e6;
+    }
+    #checkout-mini-wrapper .divider span { padding: 0 8px; }
+
+    /* Form Elements */
+    #checkout-mini-wrapper .form-group {
+        margin-bottom: 0px; /* Khoảng cách giữa các ô nhập liệu gần hơn */
+    }
+
+    #checkout-mini-wrapper .form-label {
+        display: block;
+        font-size: 11px; /* Label nhỏ */
+        color: #4a5568;
+        margin-bottom: 4px;
+        font-weight: 600;
+        text-align: left;
+    }
+
+    #checkout-mini-wrapper .input-field {
+        width: 100%;
+        padding: 8px 10px; /* Ô input thấp hơn */
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        font-size: 12px; /* Chữ trong input nhỏ */
+        color: #333;
+        background-color: #fff;
+        height: auto;
+    }
+
+    /* Card Group */
+    #checkout-mini-wrapper .card-info-group {
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #checkout-mini-wrapper .card-number-row {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #e6e6e6;
+        padding-right: 8px;
+        background: #fff;
+    }
+
+    #checkout-mini-wrapper .card-number-input {
+        border: none; border-radius: 0; flex-grow: 1; padding: 8px 10px;
+    }
+
+    #checkout-mini-wrapper .card-icons {
+        display: flex; gap: 4px; font-size: 14px; /* Icon thẻ nhỏ lại */ align-items: center;
+    }
+    
+    #checkout-mini-wrapper .fa-cc-visa { color: #1A1F71; }
+    #checkout-mini-wrapper .fa-cc-mastercard { color: #EB001B; }
+    #checkout-mini-wrapper .fa-cc-amex { color: #2E77BC; }
+    #checkout-mini-wrapper .fa-cc-discover { color: #F9A021; }
+
+    #checkout-mini-wrapper .card-expiry-cvc { display: flex; }
+
+    #checkout-mini-wrapper .half-input {
+        width: 50%; border: none; border-radius: 0; padding: 8px 10px;
+    }
+    #checkout-mini-wrapper .half-input:first-child { border-right: 1px solid #e6e6e6; }
+
+    /* Select */
+    #checkout-mini-wrapper select.input-field {
+        appearance: none; -webkit-appearance: none;
+        background-color: white;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%234a5568%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+        background-repeat: no-repeat;
+        background-position: right 8px top 50%;
+        background-size: 8px auto;
+    }
+
+    /* Pay Button */
+    #checkout-mini-wrapper .btn-pay {
+        width: 100%;
+        background-color: #0a2540;
+        color: white;
+        border: none;
+        padding: 10px; /* Nút nhỏ hơn */
+        border-radius: 5px;
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+</style>
+
+<div id="checkout-mini-wrapper">
+    <div class="checkout-card">
+        <div class="product-header">
+            <div class="product-img-placeholder"></div>
+            <div class="product-title">Abstraction Magazine</div>
+            <div class="product-price">$19 per month</div>
+        </div>
+
+        <div class="btn-apple">
+            <i class="fa-brands fa-apple" style="font-size: 1.1em;"></i> Pay
+        </div>
+
+        <div class="divider">
+            <span>Or pay with card</span>
+        </div>
+
+        <div>
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="input-field" placeholder="" readonly>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Card Information</label>
+                <div class="card-info-group">
+                    <div class="card-number-row">
+                        <input type="text" class="input-field card-number-input" placeholder="Number" readonly>
+                        <div class="card-icons">
+                            <i class="fa-brands fa-cc-visa"></i>
+                            <i class="fa-brands fa-cc-mastercard"></i>
+                            <i class="fa-brands fa-cc-amex"></i>
+                        </div>
+                    </div>
+                    <div class="card-expiry-cvc">
+                        <input type="text" class="input-field half-input" placeholder="MM / YY" readonly>
+                        <input type="text" class="input-field half-input" placeholder="CVC" readonly>
+                        <div style="display: flex; align-items: center; justify-content: center; width: 30px; color: #999; font-size: 12px;">
+                            <i class="fa-solid fa-credit-card"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Country or region</label>
+                <select class="input-field" disabled style="opacity: 1; color: #333;">
+                    <option value="US" selected>United States</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <input type="text" class="input-field" placeholder="ZIP" readonly>
+            </div>
+
+            <div class="btn-pay">Pay</div>
+        </div>
+    </div>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARTNERS SECTION -->
+    <div class="partners-section">
+      <div class="section-container">
+        <div class="partners-grid">
+          <img
+            src="/wp-content/uploads/2026/01/instacart.webp"
+            alt="instacart"
+          />
+          <img
+            src="/wp-content/uploads/2026/01/salesforce.webp"
+            alt="salesforce"
+          />
+          <img src="/wp-content/uploads/2026/01/amazon.webp" alt="amazon" />
+          <img src="/wp-content/uploads/2026/01/slack.webp" alt="slack" />
+          <img src="/wp-content/uploads/2026/01/shopify.webp" alt="shopify" />
+          <img src="/wp-content/uploads/2026/01/google.webp" alt="google" />
+          <img src="/wp-content/uploads/2026/01/lyft.webp" alt="lyft" />
+          <img src="/wp-content/uploads/2026/01/zoom.webp" alt="zoom" />
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIFIED PLATFORM -->
+    <div class="unified-platform-section">
+      <div class="section-container">
+        <p class="subtitle">Unified platform</p>
+        <h2>All the payment products you'll ever need</h2>
+
+        <div class="two-column">
+          <div class="col-left">
+            <p>
+              We've got everything you'll need and more to build websites and
+              apps that handle payments, payouts, and much more. Swipe’s
+              products power payments for
+              <a href="#"> all kinds of retailers</a>,
+              <a href="#"> all kinds of businesses</a>,
+              <a href="#"> software platforms & marketplaces</a>, and everything
+              in between.
+            </p>
+          </div>
+          <div class="col-right">
+            <p>
+              We also help companies
+              <a href="#">tackle fraud</a>, <a href="#">issue invoices</a>,
+              <a href="#">send virtual and physical cards</a>,
+              <a href="#">manage financing</a>,
+              <a href="#">wrangle business spend</a>, and much more.
+            </p>
+          </div>
+        </div>
+        <button class="primary-button with-icon">
+          Start now
+          <img src="/wp-content/uploads/2026/01/arrow-right-light.svg" alt="" />
+        </button>
+      </div>
+    </div>
+
+    <div class="graphic-section">
+      <div class="section-container">
+        <div class="graphic-grid">
+          <img
+            src="/wp-content/uploads/2026/01/credit-card.webp"
+            alt=""
+            id="credit-card"
+          />
+          <img
+            src="/wp-content/uploads/2026/01/slack-invoice.webp"
+            alt=""
+            id="slack-invoice"
+          />
+          <img src="/wp-content/uploads/2026/01/phone.webp" alt="" id="phone" />
+          <img src="/wp-content/uploads/2026/01/dash.webp" alt="" id="dash" />
+        </div>
+      </div>
+    </div>
+
+    <!-- INTEGRATIONS SECTIONS -->
+    <div class="integrations-section">
+      <div class="section-container two-column">
+        <div class="col-left">
+          <p class="subtitle2">Designed For Engineers</p>
+          <h2>The world’s best and most intuitive APIs</h2>
+          <p>
+            We abstract the hard stuff away so your teams don't can focus on
+            building good technology, instead of spending time and money
+            reinventing the wheel.
+          </p>
+
+          <button class="primary-button with-icon">
+            Start now
+            <img
+              src="/wp-content/uploads/2026/01/arrow-right-dark.svg"
+              alt=""
+            />
+          </button>
+
+          <div class="card-container">
+            <div class="card">
+              <img
+                src="/wp-content/uploads/2026/01/tools-icon.webp"
+                alt=""
+                class="icon"
+              />
+              <h3>Tools for all stacks</h3>
+              <p class="secondary-text">
+                We offer front end and back end libraries in some of the most
+                widely used technologies, old and new.
+              </p>
+              <button class="secondary-button with-icon">
+                See libraries
+                <img
+                  src="/wp-content/uploads/2026/01/arrow-right-blue.svg"
+                  alt=""
+                />
+              </button>
+            </div>
+            <div class="card">
+              <img
+                src="/wp-content/uploads/2026/01/cube-icon.webp"
+                alt=""
+                class="icon"
+              />
+              <h3>Custom Integrations</h3>
+              <p class="secondary-text">
+                Use integrations for systems like Shopify, WooCommerce,
+                NetSuite, and more.
+              </p>
+              <button class="secondary-button with-icon">
+                Explore partners
+                <img
+                  src="/wp-content/uploads/2026/01/arrow-right-blue.svg"
+                  alt=""
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-right">
+          <img
+            src="/wp-content/uploads/2026/01/api-code.webp"
+            alt=""
+            id="api-code"
+          />
+          <img
+            src="/wp-content/uploads/2026/01/terminal-code.webp"
+            alt=""
+            id="terminal-code"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY SWIPE SECTION -->
+    <div class="why-swipe-section">
+      <div class="section-container">
+        <p class="subtitle">Why Swipe</p>
+        <h2>A tech-first approach to finance</h2>
+        <div class="card-container">
+          <div class="card">
+            <img
+              src="/wp-content/uploads/2026/01/cloud-icon.webp"
+              alt=""
+              class="icon"
+            />
+            <h3>Efficient Always</h3>
+            <p class="secondary-text">
+              We've optimized every level of the finance stack, from
+              integrations to prebuilt checkout flows - no detail has been
+              spared.
+            </p>
+          </div>
+          <div class="card">
+            <img
+              src="/wp-content/uploads/2026/01/cycle-icon.webp"
+              alt=""
+              class="icon"
+            />
+            <h3>Fast-Improving</h3>
+            <p class="secondary-text">
+              We make constant updates and improvements to help you stay on the
+              cutting edge of your industry, deploying to production around 20X
+              per day!
+            </p>
+          </div>
+          <div class="card">
+            <img
+              src="/wp-content/uploads/2026/01/shield-icon.webp"
+              alt=""
+              class="icon"
+            />
+            <h3>Tried and true</h3>
+            <p class="secondary-text">
+              Our systems operate with 100% uptime, with scalability and uptime
+              as a guarantee. Swipe is super duper certified so don't worry
+            </p>
+          </div>
+          <div class="card">
+            <img
+              src="/wp-content/uploads/2026/01/bars-icon.webp"
+              alt=""
+              class="icon"
+            />
+            <h3>Crazy Optimized</h3>
+            <p class="secondary-text">
+              We use machine learning trained on billions of data points to help
+              optimize all products, from fraud to revenue recovery and more.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GLOBAL SECTION -->
+    <div class="global-section">
+      <div class="section-container">
+        <div class="two-column">
+          <div class="col-left">
+            <p class="subtitle2">Global scale</p>
+            <h2>A structure for global businesses</h2>
+            <p>
+              Swipe makes moving money simple, borderless, and programmable -
+              just like the rest of the internet. We have teams all over the
+              world and we process billions and billions of dollars yearly for
+              <a href="#">startups, Fortune 500s, and everything in between.</a>
+            </p>
+          </div>
+          <div class="col-right">
+            <img
+              id="globe"
+              src="/wp-content/uploads/2026/01/global-graphic.webp"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="card-container">
+          <div class="card">
+            <h3>250M+</h3>
+            <p class="secondary-text">
+              API requests each day, peaking at 15,000 requests a second.
+            </p>
+          </div>
+          <div class="card">
+            <h3>97%</h3>
+            <p class="secondary-text">
+              of US adults have bought from businesses that use Swipe
+            </p>
+          </div>
+          <div class="card">
+            <h3>135+</h3>
+            <p class="secondary-text">
+              currencies and payment methods supported
+            </p>
+          </div>
+          <div class="card">
+            <h3>35+</h3>
+            <p class="secondary-text">
+              countries with local, acquiring, optimizing acceptance rates
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIRTUAL EVENTS SECTION -->
+    <div class="virtual-events-section">
+      <div class="section-container two-column">
+        <div class="col-left">
+          <p class="subtitle">Virtual events</p>
+          <h2>Check out Sessions now!</h2>
+          <p>
+            Swipe Sessions is our annual conference - it's now available to
+            watch on demand! Check it out and become an "internet economy"
+            genius, and see how Swipe can transform the way you do business
+            online.
+          </p>
+          <button class="primary-button with-icon">
+            Start now
+            <img src="/wp-content/uploads/2026/01/arrow-right-light.svg" />
+          </button>
+        </div>
+        <div class="col-right">
+          <div class="swipe-sessions-card">
+            <div class="card-top">
+              <img
+                id="sessions-logo"
+                src="/wp-content/uploads/2026/01/swipe-sessions.webp"
+                alt=""
+              />
+              <div class="avatars">
+                <img src="/wp-content/uploads/2026/01/avatar1.webp" alt="" />
+                <img src="/wp-content/uploads/2026/01/avatar2.webp" alt="" />
+              </div>
+            </div>
+            <div class="card-bottom">
+              <div class="card-content">
+                <p class="subtitle">Keynote</p>
+                <p class="secondary-text">
+                  Everything you need to know about the internet economy
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GETTING STARTED SECTION -->
+    <div class="getting-started-section">
+      <div class="section-container">
+        <div class="two-column">
+          <div class="col-left">
+            <h2>What are you waiting for?</h2>
+            <p>
+              Explore <a href="#">Swipe</a> now, or create an account and start
+              accepting payments today! If you need a custom package for your
+              business, let's chat today.
+            </p>
+            <button class="primary-button with-icon">
+              Start now
+              <img
+                src="/wp-content/uploads/2026/01/arrow-right-light.svg"
+                alt=""
+              />
+            </button>
+          </div>
+          <div class="col-right">
+            <div class="card">
+              <img
+                src="/wp-content/uploads/2026/01/shield-icon.webp"
+                alt=""
+                class="icon"
+              />
+              <h3>Always know what you pay</h3>
+              <p class="secondary-text">
+                Integrated per-transaction pricing with no hidden fees.
+              </p>
+              <button class="secondary-button with-icon">
+                Pricing details
+                <img
+                  src="/wp-content/uploads/2026/01/arrow-right-purple.svg"
+                  alt=""
+                />
+              </button>
+            </div>
+            <div class="card">
+              <img
+                src="/wp-content/uploads/2026/01/bars-icon.webp"
+                alt=""
+                class="icon"
+              />
+              <h3>Start your integration</h3>
+              <p class="secondary-text">
+                Get up and running with Stripe in as little as 10 minutes.
+              </p>
+              <button class="secondary-button with-icon">
+                API reference
+                <img
+                  src="/wp-content/uploads/2026/01/arrow-right-purple.svg"
+                  alt=""
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER SECTION -->
+  </main>
+  <script>
+    /*
+     *   WebGl Gradient Animation
+     *   ScrollObserver functionality to disable animation when not scrolled into view has been disabled and
+     *   commented out for now.
+     */
+
+    //Converting colors to proper format
+    function normalizeColor(hexCode) {
+      return [
+        ((hexCode >> 16) & 255) / 255,
+        ((hexCode >> 8) & 255) / 255,
+        (255 & hexCode) / 255,
+      ];
+    }
+    ["SCREEN", "LINEAR_LIGHT"].reduce(
+      (hexCode, t, n) =>
+        Object.assign(hexCode, {
+          [t]: n,
+        }),
+      {}
+    );
+
+    //Essential functionality of WebGl
+    //t = width
+    //n = height
+    class MiniGl {
+      constructor(canvas, width, height, debug = false) {
+        const _miniGl = this,
+          debug_output =
+            -1 !==
+            document.location.search.toLowerCase().indexOf("debug=webgl");
+        (_miniGl.canvas = canvas),
+          (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
+            antialias: true,
+          })),
+          (_miniGl.meshes = []);
+        const context = _miniGl.gl;
+        width && height && this.setSize(width, height),
+          _miniGl.lastDebugMsg,
+          (_miniGl.debug =
+            debug && debug_output
+              ? function (e) {
+                  const t = new Date();
+                  t - _miniGl.lastDebugMsg > 1e3 && console.log("---"),
+                    console.log(
+                      t.toLocaleTimeString() +
+                        Array(Math.max(0, 32 - e.length)).join(" ") +
+                        e +
+                        ": ",
+                      ...Array.from(arguments).slice(1)
+                    ),
+                    (_miniGl.lastDebugMsg = t);
+                }
+              : () => {}),
+          Object.defineProperties(_miniGl, {
+            Material: {
+              enumerable: false,
+              value: class {
+                constructor(vertexShaders, fragments, uniforms = {}) {
+                  const material = this;
+                  function getShaderByType(type, source) {
+                    const shader = context.createShader(type);
+                    return (
+                      context.shaderSource(shader, source),
+                      context.compileShader(shader),
+                      context.getShaderParameter(
+                        shader,
+                        context.COMPILE_STATUS
+                      ) || console.error(context.getShaderInfoLog(shader)),
+                      _miniGl.debug("Material.compileShaderSource", {
+                        source: source,
+                      }),
+                      shader
+                    );
+                  }
+                  function getUniformVariableDeclarations(uniforms, type) {
+                    return Object.entries(uniforms)
+                      .map(([uniform, value]) =>
+                        value.getDeclaration(uniform, type)
+                      )
+                      .join("\n");
+                  }
+                  (material.uniforms = uniforms),
+                    (material.uniformInstances = []);
+
+                  const prefix =
+                    "\n              precision highp float;\n            ";
+                  (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(
+                    _miniGl.commonUniforms,
+                    "vertex"
+                  )}\n              ${getUniformVariableDeclarations(
+                    uniforms,
+                    "vertex"
+                  )}\n              ${vertexShaders}\n            `),
+                    (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(
+                      _miniGl.commonUniforms,
+                      "fragment"
+                    )}\n              ${getUniformVariableDeclarations(
+                      uniforms,
+                      "fragment"
+                    )}\n              ${fragments}\n            `),
+                    (material.vertexShader = getShaderByType(
+                      context.VERTEX_SHADER,
+                      material.vertexSource
+                    )),
+                    (material.fragmentShader = getShaderByType(
+                      context.FRAGMENT_SHADER,
+                      material.Source
+                    )),
+                    (material.program = context.createProgram()),
+                    context.attachShader(
+                      material.program,
+                      material.vertexShader
+                    ),
+                    context.attachShader(
+                      material.program,
+                      material.fragmentShader
+                    ),
+                    context.linkProgram(material.program),
+                    context.getProgramParameter(
+                      material.program,
+                      context.LINK_STATUS
+                    ) ||
+                      console.error(
+                        context.getProgramInfoLog(material.program)
+                      ),
+                    context.useProgram(material.program),
+                    material.attachUniforms(void 0, _miniGl.commonUniforms),
+                    material.attachUniforms(void 0, material.uniforms);
+                }
+                //t = uniform
+                attachUniforms(name, uniforms) {
+                  //n  = material
+                  const material = this;
+                  void 0 === name
+                    ? Object.entries(uniforms).forEach(([name, uniform]) => {
+                        material.attachUniforms(name, uniform);
+                      })
+                    : "array" == uniforms.type
+                    ? uniforms.value.forEach((uniform, i) =>
+                        material.attachUniforms(`${name}[${i}]`, uniform)
+                      )
+                    : "struct" == uniforms.type
+                    ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
+                        material.attachUniforms(`${name}.${uniform}`, i)
+                      )
+                    : (_miniGl.debug("Material.attachUniforms", {
+                        name: name,
+                        uniform: uniforms,
+                      }),
+                      material.uniformInstances.push({
+                        uniform: uniforms,
+                        location: context.getUniformLocation(
+                          material.program,
+                          name
+                        ),
+                      }));
+                }
+              },
+            },
+            Uniform: {
+              enumerable: !1,
+              value: class {
+                constructor(e) {
+                  (this.type = "float"), Object.assign(this, e);
+                  (this.typeFn =
+                    {
+                      float: "1f",
+                      int: "1i",
+                      vec2: "2fv",
+                      vec3: "3fv",
+                      vec4: "4fv",
+                      mat4: "Matrix4fv",
+                    }[this.type] || "1f"),
+                    this.update();
+                }
+                update(value) {
+                  void 0 !== this.value &&
+                    context[`uniform${this.typeFn}`](
+                      value,
+                      0 === this.typeFn.indexOf("Matrix")
+                        ? this.transpose
+                        : this.value,
+                      0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                    );
+                }
+                //e - name
+                //t - type
+                //n - length
+                getDeclaration(name, type, length) {
+                  const uniform = this;
+                  if (uniform.excludeFrom !== type) {
+                    if ("array" === uniform.type)
+                      return (
+                        uniform.value[0].getDeclaration(
+                          name,
+                          type,
+                          uniform.value.length
+                        ) +
+                        `\nconst int ${name}_length = ${uniform.value.length};`
+                      );
+                    if ("struct" === uniform.type) {
+                      let name_no_prefix = name.replace("u_", "");
+                      return (
+                        (name_no_prefix =
+                          name_no_prefix.charAt(0).toUpperCase() +
+                          name_no_prefix.slice(1)),
+                        `uniform struct ${name_no_prefix} 
+                                    {\n` +
+                          Object.entries(uniform.value)
+                            .map(([name, uniform]) =>
+                              uniform
+                                .getDeclaration(name, type)
+                                .replace(/^uniform/, "")
+                            )
+                            .join("") +
+                          `\n} ${name}${length > 0 ? `[${length}]` : ""};`
+                      );
+                    }
+                    return `uniform ${uniform.type} ${name}${
+                      length > 0 ? `[${length}]` : ""
+                    };`;
+                  }
+                }
+              },
+            },
+            PlaneGeometry: {
+              enumerable: !1,
+              value: class {
+                constructor(width, height, n, i, orientation) {
+                  context.createBuffer(),
+                    (this.attributes = {
+                      position: new _miniGl.Attribute({
+                        target: context.ARRAY_BUFFER,
+                        size: 3,
+                      }),
+                      uv: new _miniGl.Attribute({
+                        target: context.ARRAY_BUFFER,
+                        size: 2,
+                      }),
+                      uvNorm: new _miniGl.Attribute({
+                        target: context.ARRAY_BUFFER,
+                        size: 2,
+                      }),
+                      index: new _miniGl.Attribute({
+                        target: context.ELEMENT_ARRAY_BUFFER,
+                        size: 3,
+                        type: context.UNSIGNED_SHORT,
+                      }),
+                    }),
+                    this.setTopology(n, i),
+                    this.setSize(width, height, orientation);
+                }
+                setTopology(e = 1, t = 1) {
+                  const n = this;
+                  (n.xSegCount = e),
+                    (n.ySegCount = t),
+                    (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
+                    (n.quadCount = n.xSegCount * n.ySegCount * 2),
+                    (n.attributes.uv.values = new Float32Array(
+                      2 * n.vertexCount
+                    )),
+                    (n.attributes.uvNorm.values = new Float32Array(
+                      2 * n.vertexCount
+                    )),
+                    (n.attributes.index.values = new Uint16Array(
+                      3 * n.quadCount
+                    ));
+                  for (let e = 0; e <= n.ySegCount; e++)
+                    for (let t = 0; t <= n.xSegCount; t++) {
+                      const i = e * (n.xSegCount + 1) + t;
+                      if (
+                        ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
+                        (n.attributes.uv.values[2 * i + 1] =
+                          1 - e / n.ySegCount),
+                        (n.attributes.uvNorm.values[2 * i] =
+                          (t / n.xSegCount) * 2 - 1),
+                        (n.attributes.uvNorm.values[2 * i + 1] =
+                          1 - (e / n.ySegCount) * 2),
+                        t < n.xSegCount && e < n.ySegCount)
+                      ) {
+                        const s = e * n.xSegCount + t;
+                        (n.attributes.index.values[6 * s] = i),
+                          (n.attributes.index.values[6 * s + 1] =
+                            i + 1 + n.xSegCount),
+                          (n.attributes.index.values[6 * s + 2] = i + 1),
+                          (n.attributes.index.values[6 * s + 3] = i + 1),
+                          (n.attributes.index.values[6 * s + 4] =
+                            i + 1 + n.xSegCount),
+                          (n.attributes.index.values[6 * s + 5] =
+                            i + 2 + n.xSegCount);
+                      }
+                    }
+                  n.attributes.uv.update(),
+                    n.attributes.uvNorm.update(),
+                    n.attributes.index.update(),
+                    _miniGl.debug("Geometry.setTopology", {
+                      uv: n.attributes.uv,
+                      uvNorm: n.attributes.uvNorm,
+                      index: n.attributes.index,
+                    });
+                }
+                setSize(width = 1, height = 1, orientation = "xz") {
+                  const geometry = this;
+                  (geometry.width = width),
+                    (geometry.height = height),
+                    (geometry.orientation = orientation),
+                    (geometry.attributes.position.values &&
+                      geometry.attributes.position.values.length ===
+                        3 * geometry.vertexCount) ||
+                      (geometry.attributes.position.values = new Float32Array(
+                        3 * geometry.vertexCount
+                      ));
+                  const o = width / -2,
+                    r = height / -2,
+                    segment_width = width / geometry.xSegCount,
+                    segment_height = height / geometry.ySegCount;
+                  for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                    const t = r + yIndex * segment_height;
+                    for (
+                      let xIndex = 0;
+                      xIndex <= geometry.xSegCount;
+                      xIndex++
+                    ) {
+                      const r = o + xIndex * segment_width,
+                        l = yIndex * (geometry.xSegCount + 1) + xIndex;
+                      (geometry.attributes.position.values[
+                        3 * l + "xyz".indexOf(orientation[0])
+                      ] = r),
+                        (geometry.attributes.position.values[
+                          3 * l + "xyz".indexOf(orientation[1])
+                        ] = -t);
+                    }
+                  }
+                  geometry.attributes.position.update(),
+                    _miniGl.debug("Geometry.setSize", {
+                      position: geometry.attributes.position,
+                    });
+                }
+              },
+            },
+            Mesh: {
+              enumerable: !1,
+              value: class {
+                constructor(geometry, material) {
+                  const mesh = this;
+                  (mesh.geometry = geometry),
+                    (mesh.material = material),
+                    (mesh.wireframe = !1),
+                    (mesh.attributeInstances = []),
+                    Object.entries(mesh.geometry.attributes).forEach(
+                      ([e, attribute]) => {
+                        mesh.attributeInstances.push({
+                          attribute: attribute,
+                          location: attribute.attach(e, mesh.material.program),
+                        });
+                      }
+                    ),
+                    _miniGl.meshes.push(mesh),
+                    _miniGl.debug("Mesh.constructor", {
+                      mesh: mesh,
+                    });
+                }
+                draw() {
+                  context.useProgram(this.material.program),
+                    this.material.uniformInstances.forEach(
+                      ({ uniform: e, location: t }) => e.update(t)
+                    ),
+                    this.attributeInstances.forEach(
+                      ({ attribute: e, location: t }) => e.use(t)
+                    ),
+                    context.drawElements(
+                      this.wireframe ? context.LINES : context.TRIANGLES,
+                      this.geometry.attributes.index.values.length,
+                      context.UNSIGNED_SHORT,
+                      0
+                    );
+                }
+                remove() {
+                  _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+                }
+              },
+            },
+            Attribute: {
+              enumerable: !1,
+              value: class {
+                constructor(e) {
+                  (this.type = context.FLOAT),
+                    (this.normalized = !1),
+                    (this.buffer = context.createBuffer()),
+                    Object.assign(this, e),
+                    this.update();
+                }
+                update() {
+                  void 0 !== this.values &&
+                    (context.bindBuffer(this.target, this.buffer),
+                    context.bufferData(
+                      this.target,
+                      this.values,
+                      context.STATIC_DRAW
+                    ));
+                }
+                attach(e, t) {
+                  const n = context.getAttribLocation(t, e);
+                  return (
+                    this.target === context.ARRAY_BUFFER &&
+                      (context.enableVertexAttribArray(n),
+                      context.vertexAttribPointer(
+                        n,
+                        this.size,
+                        this.type,
+                        this.normalized,
+                        0,
+                        0
+                      )),
+                    n
+                  );
+                }
+                use(e) {
+                  context.bindBuffer(this.target, this.buffer),
+                    this.target === context.ARRAY_BUFFER &&
+                      (context.enableVertexAttribArray(e),
+                      context.vertexAttribPointer(
+                        e,
+                        this.size,
+                        this.type,
+                        this.normalized,
+                        0,
+                        0
+                      ));
+                }
+              },
+            },
+          });
+        const a = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+        _miniGl.commonUniforms = {
+          projectionMatrix: new _miniGl.Uniform({
+            type: "mat4",
+            value: a,
+          }),
+          modelViewMatrix: new _miniGl.Uniform({
+            type: "mat4",
+            value: a,
+          }),
+          resolution: new _miniGl.Uniform({
+            type: "vec2",
+            value: [1, 1],
+          }),
+          aspectRatio: new _miniGl.Uniform({
+            type: "float",
+            value: 1,
+          }),
+        };
+      }
+      setSize(e = 640, t = 480) {
+        (this.width = e),
+          (this.height = t),
+          (this.canvas.width = e),
+          (this.canvas.height = t),
+          this.gl.viewport(0, 0, e, t),
+          (this.commonUniforms.resolution.value = [e, t]),
+          (this.commonUniforms.aspectRatio.value = e / t),
+          this.debug("MiniGL.setSize", {
+            width: e,
+            height: t,
+          });
+      }
+      //left, right, top, bottom, near, far
+      setOrthographicCamera(e = 0, t = 0, n = 0, i = -2e3, s = 2e3) {
+        (this.commonUniforms.projectionMatrix.value = [
+          2 / this.width,
+          0,
+          0,
+          0,
+          0,
+          2 / this.height,
+          0,
+          0,
+          0,
+          0,
+          2 / (i - s),
+          0,
+          e,
+          t,
+          n,
+          1,
+        ]),
+          this.debug(
+            "setOrthographicCamera",
+            this.commonUniforms.projectionMatrix.value
+          );
+      }
+      render() {
+        this.gl.clearColor(0, 0, 0, 0),
+          this.gl.clearDepth(1),
+          this.meshes.forEach((e) => e.draw());
+      }
+    }
+
+    //Sets initial properties
+    function e(object, propertyName, val) {
+      return (
+        propertyName in object
+          ? Object.defineProperty(object, propertyName, {
+              value: val,
+              enumerable: !0,
+              configurable: !0,
+              writable: !0,
+            })
+          : (object[propertyName] = val),
+        object
+      );
+    }
+
+    //Gradient object
+    class Gradient {
+      constructor(...t) {
+        e(this, "el", void 0),
+          e(this, "cssVarRetries", 0),
+          e(this, "maxCssVarRetries", 200),
+          e(this, "angle", 0),
+          e(this, "isLoadedClass", !1),
+          e(this, "isScrolling", !1),
+          /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(
+            this,
+            "scrollingTimeout",
+            void 0
+          ),
+          e(this, "scrollingRefreshDelay", 200),
+          e(this, "isIntersecting", !1),
+          e(this, "shaderFiles", void 0),
+          e(this, "vertexShader", void 0),
+          e(this, "sectionColors", void 0),
+          e(this, "computedCanvasStyle", void 0),
+          e(this, "conf", void 0),
+          e(this, "uniforms", void 0),
+          e(this, "t", 1253106),
+          e(this, "last", 0),
+          e(this, "width", void 0),
+          e(this, "minWidth", 1111),
+          e(this, "height", 600),
+          e(this, "xSegCount", void 0),
+          e(this, "ySegCount", void 0),
+          e(this, "mesh", void 0),
+          e(this, "material", void 0),
+          e(this, "geometry", void 0),
+          e(this, "minigl", void 0),
+          e(this, "scrollObserver", void 0),
+          e(this, "amp", 320),
+          e(this, "seed", 5),
+          e(this, "freqX", 14e-5),
+          e(this, "freqY", 29e-5),
+          e(this, "freqDelta", 1e-5),
+          e(this, "activeColors", [1, 1, 1, 1]),
+          e(this, "isMetaKey", !1),
+          e(this, "isGradientLegendVisible", !1),
+          e(this, "isMouseDown", !1),
+          e(this, "handleScroll", () => {
+            clearTimeout(this.scrollingTimeout),
+              (this.scrollingTimeout = setTimeout(
+                this.handleScrollEnd,
+                this.scrollingRefreshDelay
+              )),
+              this.isGradientLegendVisible && this.hideGradientLegend(),
+              this.conf.playing && ((this.isScrolling = !0), this.pause());
+          }),
+          e(this, "handleScrollEnd", () => {
+            (this.isScrolling = !1), this.isIntersecting && this.play();
+          }),
+          e(this, "resize", () => {
+            (this.width = window.innerWidth),
+              this.minigl.setSize(this.width, this.height),
+              this.minigl.setOrthographicCamera(),
+              (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
+              (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
+              this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
+              this.mesh.geometry.setSize(this.width, this.height),
+              (this.mesh.material.uniforms.u_shadow_power.value =
+                this.width < 600 ? 5 : 6);
+          }),
+          e(this, "handleMouseDown", (e) => {
+            this.isGradientLegendVisible &&
+              ((this.isMetaKey = e.metaKey),
+              (this.isMouseDown = !0),
+              !1 === this.conf.playing && requestAnimationFrame(this.animate));
+          }),
+          e(this, "handleMouseUp", () => {
+            this.isMouseDown = !1;
+          }),
+          e(this, "animate", (e) => {
+            if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+              if (
+                ((this.t += Math.min(e - this.last, 1e3 / 15)),
+                (this.last = e),
+                this.isMouseDown)
+              ) {
+                let e = 160;
+                this.isMetaKey && (e = -160), (this.t += e);
+              }
+              (this.mesh.material.uniforms.u_time.value = this.t),
+                this.minigl.render();
+            }
+            if (0 !== this.last && this.isStatic)
+              return this.minigl.render(), void this.disconnect();
+            /*this.isIntersecting && */ (this.conf.playing ||
+              this.isMouseDown) &&
+              requestAnimationFrame(this.animate);
+          }),
+          e(this, "addIsLoadedClass", () => {
+            /*this.isIntersecting && */ !this.isLoadedClass &&
+              ((this.isLoadedClass = !0),
+              this.el.classList.add("isLoaded"),
+              setTimeout(() => {
+                this.el.parentElement.classList.add("isLoaded");
+              }, 3e3));
+          }),
+          e(this, "pause", () => {
+            this.conf.playing = false;
+          }),
+          e(this, "play", () => {
+            requestAnimationFrame(this.animate), (this.conf.playing = true);
+          }),
+          e(this, "initGradient", (selector) => {
+            this.el = document.querySelector(selector);
+            this.connect();
+            return this;
+          });
+      }
+      async connect() {
+        (this.shaderFiles = {
+          vertex:
+            "varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",
+          noise:
+            "//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n    return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v)\n{\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n            i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n          + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n          + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}",
+          blend:
+            "//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}",
+          fragment:
+            "varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}",
+        }),
+          (this.conf = {
+            presetName: "",
+            wireframe: false,
+            density: [0.06, 0.16],
+            zoom: 1,
+            rotation: 0,
+            playing: true,
+          }),
+          document.querySelectorAll("canvas").length < 1
+            ? console.log("DID NOT LOAD HERO CANVAS")
+            : ((this.minigl = new MiniGl(this.el, null, null, !0)),
+              requestAnimationFrame(() => {
+                this.el &&
+                  ((this.computedCanvasStyle = getComputedStyle(this.el)),
+                  this.waitForCssVars());
+              }));
+        /*
+            this.scrollObserver = await s.create(.1, !1),
+            this.scrollObserver.observe(this.el),
+            this.scrollObserver.onSeparate(() => {
+                window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
+            }), 
+            this.scrollObserver.onIntersect(() => {
+                window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
+            })*/
+      }
+      disconnect() {
+        this.scrollObserver &&
+          (window.removeEventListener("scroll", this.handleScroll),
+          window.removeEventListener("mousedown", this.handleMouseDown),
+          window.removeEventListener("mouseup", this.handleMouseUp),
+          window.removeEventListener("keydown", this.handleKeyDown),
+          this.scrollObserver.disconnect()),
+          window.removeEventListener("resize", this.resize);
+      }
+      initMaterial() {
+        this.uniforms = {
+          u_time: new this.minigl.Uniform({
+            value: 0,
+          }),
+          u_shadow_power: new this.minigl.Uniform({
+            value: 5,
+          }),
+          u_darken_top: new this.minigl.Uniform({
+            value: "" === this.el.dataset.jsDarkenTop ? 1 : 0,
+          }),
+          u_active_colors: new this.minigl.Uniform({
+            value: this.activeColors,
+            type: "vec4",
+          }),
+          u_global: new this.minigl.Uniform({
+            value: {
+              noiseFreq: new this.minigl.Uniform({
+                value: [this.freqX, this.freqY],
+                type: "vec2",
+              }),
+              noiseSpeed: new this.minigl.Uniform({
+                value: 5e-6,
+              }),
+            },
+            type: "struct",
+          }),
+          u_vertDeform: new this.minigl.Uniform({
+            value: {
+              incline: new this.minigl.Uniform({
+                value: Math.sin(this.angle) / Math.cos(this.angle),
+              }),
+              offsetTop: new this.minigl.Uniform({
+                value: -0.5,
+              }),
+              offsetBottom: new this.minigl.Uniform({
+                value: -0.5,
+              }),
+              noiseFreq: new this.minigl.Uniform({
+                value: [3, 4],
+                type: "vec2",
+              }),
+              noiseAmp: new this.minigl.Uniform({
+                value: this.amp,
+              }),
+              noiseSpeed: new this.minigl.Uniform({
+                value: 10,
+              }),
+              noiseFlow: new this.minigl.Uniform({
+                value: 3,
+              }),
+              noiseSeed: new this.minigl.Uniform({
+                value: this.seed,
+              }),
+            },
+            type: "struct",
+            excludeFrom: "fragment",
+          }),
+          u_baseColor: new this.minigl.Uniform({
+            value: this.sectionColors[0],
+            type: "vec3",
+            excludeFrom: "fragment",
+          }),
+          u_waveLayers: new this.minigl.Uniform({
+            value: [],
+            excludeFrom: "fragment",
+            type: "array",
+          }),
+        };
+        for (let e = 1; e < this.sectionColors.length; e += 1)
+          this.uniforms.u_waveLayers.value.push(
+            new this.minigl.Uniform({
+              value: {
+                color: new this.minigl.Uniform({
+                  value: this.sectionColors[e],
+                  type: "vec3",
+                }),
+                noiseFreq: new this.minigl.Uniform({
+                  value: [
+                    2 + e / this.sectionColors.length,
+                    3 + e / this.sectionColors.length,
+                  ],
+                  type: "vec2",
+                }),
+                noiseSpeed: new this.minigl.Uniform({
+                  value: 11 + 0.3 * e,
+                }),
+                noiseFlow: new this.minigl.Uniform({
+                  value: 6.5 + 0.3 * e,
+                }),
+                noiseSeed: new this.minigl.Uniform({
+                  value: this.seed + 10 * e,
+                }),
+                noiseFloor: new this.minigl.Uniform({
+                  value: 0.1,
+                }),
+                noiseCeil: new this.minigl.Uniform({
+                  value: 0.63 + 0.07 * e,
+                }),
+              },
+              type: "struct",
+            })
+          );
+        return (
+          (this.vertexShader = [
+            this.shaderFiles.noise,
+            this.shaderFiles.blend,
+            this.shaderFiles.vertex,
+          ].join("\n\n")),
+          new this.minigl.Material(
+            this.vertexShader,
+            this.shaderFiles.fragment,
+            this.uniforms
+          )
+        );
+      }
+      initMesh() {
+        (this.material = this.initMaterial()),
+          (this.geometry = new this.minigl.PlaneGeometry()),
+          (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+      }
+      shouldSkipFrame(e) {
+        return (
+          !!window.document.hidden ||
+          !this.conf.playing ||
+          parseInt(e, 10) % 2 == 0 ||
+          void 0
+        );
+      }
+      updateFrequency(e) {
+        (this.freqX += e), (this.freqY += e);
+      }
+      toggleColor(index) {
+        this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
+      }
+      showGradientLegend() {
+        this.width > this.minWidth &&
+          ((this.isGradientLegendVisible = !0),
+          document.body.classList.add("isGradientLegendVisible"));
+      }
+      hideGradientLegend() {
+        (this.isGradientLegendVisible = !1),
+          document.body.classList.remove("isGradientLegendVisible");
+      }
+      init() {
+        this.initGradientColors(),
+          this.initMesh(),
+          this.resize(),
+          requestAnimationFrame(this.animate),
+          window.addEventListener("resize", this.resize);
+      }
+      /*
+       * Waiting for the css variables to become available, usually on page load before we can continue.
+       * Using default colors assigned below if no variables have been found after maxCssVarRetries
+       */
+      waitForCssVars() {
+        if (
+          this.computedCanvasStyle &&
+          -1 !==
+            this.computedCanvasStyle
+              .getPropertyValue("--gradient-color-1")
+              .indexOf("#")
+        )
+          this.init(), this.addIsLoadedClass();
+        else {
+          if (
+            ((this.cssVarRetries += 1),
+            this.cssVarRetries > this.maxCssVarRetries)
+          ) {
+            return (
+              (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
+              void this.init()
+            );
+          }
+          requestAnimationFrame(() => this.waitForCssVars());
+        }
+      }
+      /*
+       * Initializes the four section colors by retrieving them from css variables.
+       */
+      initGradientColors() {
+        this.sectionColors = [
+          "--gradient-color-1",
+          "--gradient-color-2",
+          "--gradient-color-3",
+          "--gradient-color-4",
+        ]
+          .map((cssPropertyName) => {
+            let hex = this.computedCanvasStyle
+              .getPropertyValue(cssPropertyName)
+              .trim();
+            //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
+            if (4 === hex.length) {
+              const hexTemp = hex
+                .substr(1)
+                .split("")
+                .map((hexTemp) => hexTemp + hexTemp)
+                .join("");
+              hex = `#${hexTemp}`;
+            }
+            return hex && `0x${hex.substr(1)}`;
+          })
+          .filter(Boolean)
+          .map(normalizeColor);
+      }
+    }
+
+    /*
+     *Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
+     * Use Gradient.pause() and Gradient.play() for controls.
+     *
+     * Here are some default property values you can change anytime:
+     * Amplitude:    Gradient.amp = 0
+     * Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
+     *
+     *
+     * Useful functions
+     * Gradient.toggleColor(index)
+     * Gradient.updateFrequency(freq)
+     */
+    var gradient = new Gradient();
+    gradient.initGradient("#gradient-canvas");
+    const hamburger = document.querySelector(".hamburger-button");
+    const bar1 = document.querySelector(".bar1");
+    const bar2 = document.querySelector(".bar2");
+    const bar3 = document.querySelector(".bar3");
+    const mobileNav = document.querySelector(".mobile-nav");
+
+    hamburger.addEventListener("click", () => {
+      bar1.classList.toggle("animateBar1");
+      bar2.classList.toggle("animateBar2");
+      bar3.classList.toggle("animateBar3");
+      mobileNav.classList.toggle("mobile-nav-show");
+    });
+  </script>
+</div>
+
+<?php get_footer(); ?>

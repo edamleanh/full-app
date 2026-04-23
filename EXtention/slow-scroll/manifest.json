@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Livestream Slow Scroll",
+  "version": "1.0",
+  "description": "Giảm tốc độ cuộn chuột khi chọn icon/comment trong livestream YouTube.",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*",
+        "*://youtube.com/*"
+      ],
+      "js": ["content.js"],
+      "all_frames": true
+    }
+  ]
+}

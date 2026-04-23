@@ -1,0 +1,69 @@
+./<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Nội bộ Doanh Nghiệp | Secure RAG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Nền Blur Động (Dynamic Blur Background) -->
+    <div class="ambient-background">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+    </div>
+
+    <div class="glass-container">
+        <!-- Cột bên trái: Quản lý File -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="icon-box"><i class='bx bx-shield-quarter'></i></div>
+                <div class="brand-text">
+                    <h2>TrustAI</h2>
+                    <p>100% Offline System</p>
+                </div>
+            </div>
+
+            <div class="upload-section">
+                <div class="drag-drop-zone" id="drop-zone">
+                    <i class='bx bx-cloud-upload'></i>
+                    <p>Kéo phăng File tĩnh<br><span>(PDF, TXT) vào đây!</span></p>
+                    <input type="file" id="file-input" hidden accept=".txt,.pdf">
+                </div>
+                <!-- Nút thao tác DB nếu copy tay -->
+                <button id="reload-btn" class="sync-btn"><i class='bx bx-loader-alt'></i> Tự quét Folder data/</button>
+            </div>
+
+            <div class="system-status" id="system-status">Sẵn sàng phản hồi.</div>
+
+            <div class="file-list-container">
+                <p style="font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-sub);">📚 KHO KIẾN THỨC NỘI BỘ</p>
+                <ul id="file-list" class="file-list">
+                    <!-- Files injected by JS -->
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Cảng Chat bên phải -->
+        <main class="chat-section">
+            <div class="chat-body" id="chat-window">
+                <div class="message ai-message">
+                    <div class="bubble">
+                        Xin chào! Tôi là trí tuệ nhân tạo đọc tài liệu độc quyền của mạng nội bộ. Tôi sẽ không bịa chuyện. Hãy hỏi tôi các điều khoản nội bộ.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Khung Gõ -->
+            <div class="input-bar">
+                <input type="text" id="chat-input" placeholder="Hỏi quy định xin nghỉ phép, thông tin tài chính..." autocomplete="off">
+                <button id="send-btn"><i class='bx bxl-telegram'></i></button>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

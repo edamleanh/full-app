@@ -1,0 +1,97 @@
+[gd_scene load_steps=2 format=3 uid="uid://minigame001"]
+
+[ext_resource type="Script" path="res://scenes/ui/FishingMiniGame.gd" id="1_mg"]
+
+[node name="FishingMiniGame" type="Control"]
+script = ExtResource("1_mg")
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+color = Color(0, 0, 0, 0.5)
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 0
+anchor_left = 0.5
+anchor_top = 0.5
+offset_left = -180.0
+offset_top = -220.0
+offset_right = 180.0
+offset_bottom = 220.0
+
+[node name="FishLabel" type="Label" parent="Panel"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_top = 0.0
+offset_left = -100.0
+offset_right = 100.0
+offset_top = 8.0
+offset_bottom = 36.0
+horizontal_alignment = 1
+add_theme_font_size_override = 18
+
+[node name="BarBG" type="Panel" parent="Panel"]
+offset_left = 40.0
+offset_top = 48.0
+offset_right = 80.0
+offset_bottom = 348.0
+
+[node name="TargetZone" type="Panel" parent="Panel/BarBG"]
+offset_left = 0.0
+offset_top = 120.0
+offset_right = 40.0
+offset_bottom = 180.0
+
+[node name="CursorIcon" type="Label" parent="Panel/BarBG"]
+offset_left = 4.0
+offset_top = 140.0
+text = "🐟"
+add_theme_font_size_override = 20
+
+[node name="WinBar" type="Panel" parent="Panel"]
+offset_left = 100.0
+offset_top = 48.0
+offset_right = 320.0
+offset_bottom = 68.0
+
+[node name="Fill" type="ColorRect" parent="Panel/WinBar"]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 100.0
+offset_bottom = 18.0
+color = Color(0.2, 1.0, 0.4)
+
+[node name="TimerBar" type="Panel" parent="Panel"]
+offset_left = 100.0
+offset_top = 76.0
+offset_right = 320.0
+offset_bottom = 96.0
+
+[node name="Fill" type="ColorRect" parent="Panel/TimerBar"]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 216.0
+offset_bottom = 18.0
+color = Color(1.0, 0.3, 0.3)
+
+[node name="InstructionLabel" type="Label" parent="Panel"]
+offset_left = 10.0
+offset_top = 370.0
+offset_right = 350.0
+offset_bottom = 395.0
+text = "Nhấn [SPACE] để giữ con trỏ cá trong vùng xanh!"
+horizontal_alignment = 1
+add_theme_font_size_override = 12
+
+[node name="CatchLabel" type="Label" parent="Panel"]
+visible = false
+offset_left = 10.0
+offset_top = 160.0
+offset_right = 350.0
+offset_bottom = 200.0
+horizontal_alignment = 1
+add_theme_font_size_override = 24

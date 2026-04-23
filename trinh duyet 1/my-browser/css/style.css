@@ -1,0 +1,843 @@
+/* 
+============================================================
+   ACS BROWSER - UI/UX PRO-MAX DESIGN SYSTEM
+   Modern obsidian-glass aesthetics with high-motion UX.
+============================================================
+*/
+
+:root {
+    /* Color Palette - HSL for better translucency control */
+    --deep-bg: hsl(230, 15%, 4%);
+    --panel-bg: hsla(230, 15%, 8%, 0.55); /* More transparent for Glass effect */
+    --border-subtle: hsla(0, 0%, 100%, 0.1);
+    --border-bright: hsla(0, 0%, 100%, 0.18);
+    
+    --text-main: hsl(0, 0%, 98%);
+    --text-dim: hsl(0, 0%, 75%);
+    
+    --accent-primary: hsl(83, 75%, 52%); /* New Electric Lime */
+    --accent-glow: hsla(83, 75%, 52%, 0.35);
+    
+    --input-bg: hsla(230, 10%, 15%, 0.5);
+    --hover-bg: hsla(0, 0%, 100%, 0.08);
+    
+    /* Effects */
+    --glass-blur: blur(20px);
+    --shadow-pro: 0 10px 40px -5px rgba(0,0,0,0.7);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Spacing & Sizing */
+    --nav-height: 40px;
+    --tab-height: 38px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-pill: 40px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--deep-bg);
+    background-image: url('../obsidian_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    background: hsla(230, 15%, 4%, 0.2); /* Subtle tint over wallpaper */
+}
+
+/* 
+============================================================
+   1. NAVIGATION & OMNIBOX (GLASSMORPHISM)
+============================================================
+*/
+
+#navigation-bar {
+    display: flex;
+    align-items: center;
+    background: var(--panel-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    padding: 0 16px;
+    height: var(--nav-height);
+    border-bottom: 1px solid var(--border-subtle);
+    z-index: 1000;
+    position: relative;
+    gap: 8px;
+    transform: translateZ(0); /* Bật GPU Acceleration chống Stutter */
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1; /* Cấp không gian bằng với bên phải để căn giữa ô search */
+}
+
+.nav-buttons button {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+}
+
+.nav-buttons button:hover {
+    background: var(--hover-bg);
+    color: var(--text-main);
+    transform: translateY(-1px);
+}
+
+.nav-buttons button:active {
+    transform: translateY(0) scale(0.95);
+}
+
+/* Trạng thái "đang bật" - dùng cho nút Dark Mode */
+.nav-buttons button.active {
+    color: var(--accent);
+    background: rgba(99, 102, 241, 0.15);
+}
+
+.url-container {
+    flex: 0 1 800px; /* Độ rộng lý tưởng 800px, có thể co lại (1), không giãn thêm (0) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 5;
+    min-width: 250px;
+    transition: var(--transition-smooth);
+}
+
+#url-input {
+    width: 100%;
+    background: var(--input-bg);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-main);
+    padding: 6px 16px;
+    height: 28px;
+    border-radius: var(--radius-pill);
+    font-size: 16px;
+    font-weight: 500;
+    outline: none;
+    transition: var(--transition-smooth);
+    text-align: center;
+}
+
+#url-input:focus {
+    background: hsla(230, 10%, 20%, 0.8);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 15px var(--accent-glow);
+    text-align: left;
+}
+
+/* Bookmark Star Button (Pro-Max Design) */
+#btn-add-bookmark {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+}
+
+#btn-add-bookmark:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    transform: translateY(-50%) scale(1.1);
+}
+
+#btn-add-bookmark.bookmarked {
+    color: #ffcc00; /* Gold Star */
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.6);
+}
+
+#btn-add-bookmark.bookmarked:hover {
+    transform: translateY(-50%) scale(1.2) rotate(15deg);
+    filter: drop-shadow(0 0 8px rgba(255, 204, 0, 0.8));
+}
+
+#btn-add-bookmark:active {
+    transform: translateY(-50%) scale(0.9);
+}
+
+/* 
+============================================================
+   1.5 POKÉMON PARADE (Hiệu ứng diễu hành trên nav bar)
+============================================================
+*/
+
+#pokemon-parade-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Đẩy dàn pokemon về phía bên phải */
+    gap: 4px;
+    flex: 1; /* Cấp không gian bằng với bên trái để căn giữa ô search */
+    padding-right: 4px;
+    transition: var(--transition-smooth);
+}
+
+#pokemon-parade {
+    width: 520px;
+    height: 36px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    /* background: url('../img/pokemon/background.png') center calc(50% + 5px)/cover no-repeat; */
+    border: 1px solid var(--border-subtle);
+}
+
+/* 
+   RESPONSIVE QUERIES 
+   Tự động ẩn/hiện thành phần khi cửa sổ thay đổi kích thước
+*/
+@media (max-width: 1150px) {
+    #pokemon-parade {
+        width: 300px; /* Thu nhỏ khi màn hình trung bình */
+    }
+}
+
+@media (max-width: 1000px) {
+    #pokemon-parade-wrapper {
+        display: none; /* Ẩn hẳn khi màn hình hẹp để ưu tiên search bar */
+    }
+}
+
+@media (max-width: 600px) {
+    .url-container {
+        max-width: none;
+        margin: 0 4px;
+    }
+}
+
+#pokemon-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* 
+============================================================
+   2. BOOKMARKS BAR (MINIMALIST)
+============================================================
+*/
+
+#bookmarks-bar {
+    display: flex;
+    align-items: center;
+    background: var(--panel-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    padding: 0 12px;
+    height: 30px;
+    border-bottom: 1px solid var(--border-subtle);
+    gap: 4px;
+    overflow-x: auto;
+}
+
+#bookmarks-bar::-webkit-scrollbar { display: none; }
+
+.bookmark-item {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-dim);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transition: var(--transition-smooth);
+    white-space: nowrap;
+    gap: 6px;
+}
+
+.bookmark-item:hover {
+    background: var(--hover-bg);
+    color: var(--text-main);
+    transform: translateY(-1px);
+}
+
+.favicon { width: 14px; height: 14px; border-radius: 3px; }
+
+/* 
+============================================================
+   3. TAB SYSTEM (MODERN TABS)
+============================================================
+*/
+
+#tab-bar {
+    display: flex;
+    align-items: center;
+    background: var(--panel-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    height: 48px;
+    padding: 0 100px 0 12px;
+    box-sizing: border-box;
+    -webkit-app-region: drag;
+    border-bottom: 1px solid var(--border-subtle);
+    gap: 15px;
+    transform: translateZ(0); /* Bật GPU Acceleration */
+}
+
+/* Branding Logo Styling */
+#app-branding {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    -webkit-app-region: no-drag;
+    padding: 4px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-smooth);
+}
+
+#app-branding:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
+}
+
+#app-branding img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px var(--accent-primary));
+}
+
+#app-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #fff 0%, var(--accent-primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+}
+
+#tabs-container {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    flex-grow: 1;
+    gap: 2px;
+    -webkit-app-region: no-drag;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    width: 220px;
+    height: 48px; /* Mở rộng vùng bấm lên đụng lề trên thanh title bar (48px) */
+    box-sizing: border-box;
+    padding: 10px 12px 0 12px; /* Đẩy nội dung xuống để giữ visual y như cũ */
+    background: transparent;
+    color: var(--text-dim);
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    transition: var(--transition-smooth);
+    font-size: 13px;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+/* Tab Background Layer */
+.tab::before {
+    content: "";
+    position: absolute;
+    inset: 14px 0 0 0; /* Bù lại khoảng cách bù 10px padding ở trên + 4px nguyên bản  */
+    background: hsla(0, 0%, 100%, 0.03);
+    border-radius: 10px 10px 0 0;
+    z-index: -1;
+    transition: var(--transition-smooth);
+}
+
+.tab:hover::before {
+    background: hsla(0, 0%, 100%, 0.07);
+}
+
+.tab.active {
+    color: var(--text-main);
+    z-index: 10;
+}
+
+.tab.active::before {
+    background: var(--panel-bg);
+    border-top: 2px solid var(--accent-primary);
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
+}
+
+.tab-icon {
+    width: 16px;
+    height: 16px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.tab-title {
+    flex-grow: 1;
+    margin: 0 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Pinned Tab State */
+.tab.pinned {
+    width: 48px;
+    padding: 0;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.tab.pinned .tab-title,
+.tab.pinned .tab-close {
+    display: none;
+}
+
+.tab.pinned .tab-icon, 
+.tab.pinned .tab-spinner {
+    margin: 0;
+}
+
+
+.tab-close {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.tab:hover .tab-close { opacity: 0.6; }
+.tab-close:hover { 
+    opacity: 1 !important; 
+    background: rgba(255,100,100,0.2); 
+    color: #ff6b6b;
+}
+
+#btn-new-tab {
+    width: 28px;
+    height: 28px;
+    background: var(--hover-bg);
+    border-radius: 6px;
+    margin-left: 4px;
+    margin-bottom: 0; /* Sát với thanh phía dưới */
+    color: var(--text-dim);
+    transition: var(--transition-smooth);
+    -webkit-app-region: no-drag;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#btn-new-tab:hover {
+    background: var(--accent-primary);
+    color: #000;
+    box-shadow: 0 0 15px var(--accent-glow);
+    transform: rotate(90deg);
+}
+
+/* 
+============================================================
+   4. WEB CONTAINER & EFFECTS
+============================================================
+*/
+
+#web-container {
+    flex-grow: 1;
+    position: relative;
+    background: #000;
+}
+
+webview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+webview.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 10;
+}
+
+/* Loading Spinner */
+.tab-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--border-subtle);
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 0.8s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    margin-right: 8px;
+    display: none;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.hidden {
+    display: none !important;
+}
+
+/* 
+============================================================
+   5. OVERLAYS & MODALS
+============================================================
+*/
+
+#live-tab-preview-box {
+    position: absolute;
+    width: 300px;
+    /* Height dynamicly set via JS */
+    border-radius: var(--radius-lg);
+    background: var(--panel-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-bright);
+    box-shadow: var(--shadow-pro);
+    overflow: hidden;
+    z-index: 5000;
+}
+
+#live-tab-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#custom-context-menu {
+    position: absolute;
+    z-index: 10000;
+    background: var(--panel-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-bright);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-pro);
+    padding: 4px;
+    min-width: 180px;
+}
+
+.context-menu-item {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    transition: var(--transition-smooth);
+}
+
+.context-menu-item:hover {
+    background: var(--accent-primary);
+    color: #000;
+    font-weight: 600;
+}
+
+/* --- PREMIUM DICTIONARY MODAL (CENTRAL) --- */
+#dictionary-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+}
+
+#dictionary-modal.hidden {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+#dictionary-modal .modal-content {
+    position: relative;
+    z-index: 10002;
+    background: var(--panel-bg);
+    backdrop-filter: blur(30px);
+    border: 1px solid var(--border-bright);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    padding: 32px;
+    border-radius: 28px;
+    width: 520px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    animation: modal-zoom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modal-zoom {
+    from { opacity: 0; transform: scale(0.9) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-title h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.modal-close-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.modal-close-btn:hover {
+    background: rgba(255, 0, 0, 0.3);
+    transform: rotate(90deg);
+}
+
+/* Modal Body */
+.add-dict-section {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.input-wrapper {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    font-size: 18px;
+    color: var(--accent-primary);
+    opacity: 0.8;
+}
+
+#dict-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 14px 12px 42px;
+    border-radius: 14px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+#dict-input:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 4px rgba(50, 205, 50, 0.15);
+}
+
+#btn-add-dict {
+    background: linear-gradient(135deg, var(--accent-primary), #2ebf2e);
+    color: #000;
+    border: none;
+    padding: 0 24px;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+#btn-add-dict:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(50, 205, 50, 0.3);
+}
+
+#btn-add-dict:active {
+    transform: scale(0.95);
+}
+
+/* Dictionary List */
+.list-container {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.list-header {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 12px;
+    padding-left: 4px;
+}
+
+#dict-list {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.dict-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 12px 16px;
+    border-radius: 14px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-smooth);
+}
+
+.dict-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(4px);
+}
+
+.dict-item span {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #eee;
+}
+
+.btn-delete-dict {
+    background: transparent;
+    border: none;
+    color: #ff5c5c; /* Màu đỏ nhẹ mặc định */
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-delete-dict .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined' !important;
+    font-feature-settings: 'liga'; /* Ép bật tính năng icon ligature */
+    font-variant-ligatures: discretionary-ligatures;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    display: inline-block;
+    color: #ff5c5c; /* Đảm bảo màu đỏ được áp dụng trực tiếp lên icon */
+}
+
+.btn-delete-dict:hover .material-symbols-outlined {
+    color: #ff0000;
+}
+
+.styled-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.styled-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.styled-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.styled-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Omnibox Suggestions */
+#omnibox-suggestions {
+    background: var(--panel-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-bright);
+    border-radius: 16px;
+    margin-top: 8px;
+    box-shadow: var(--shadow-pro);
+    padding: 8px;
+}
+
+.suggestion-item {
+    padding: 10px 16px;
+    border-radius: 10px;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background: var(--hover-bg);
+}
+
+.suggestion-item.selected {
+    background: var(--accent-primary);
+    color: #000;
+}
